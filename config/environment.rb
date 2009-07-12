@@ -45,3 +45,5 @@ end
 
 # Clearance
 DO_NOT_REPLY = "donotreply@example.com"
+Sass::Plugin.options[:template_location] = RAILS_ROOT + "/public/css/sass"
+Sass::Plugin.options[:css_location] = RAILS_ROOT + "/public/css"
