@@ -32,6 +32,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "site"
 
+  map.resources :users
+
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
