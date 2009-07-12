@@ -1,3 +1,8 @@
 .container {
-  background-color: #cccccc;
-  border: 1px solid; }
+  background-color: #cccccc; }
+
+.header {
+  background-color: #ccffff; }
+
+.main {
+  background-color: #ffccff; }

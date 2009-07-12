@@ -9,5 +9,7 @@
 
 %body
   .container
-    %a{:href => root_path}Home
-    = yield
+    .header.span-24
+      %a{:href => root_path}Home
+    .main.span-24
+      = yield
