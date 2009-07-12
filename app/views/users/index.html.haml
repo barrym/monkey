@@ -1,1 +1,8 @@
-user list!
+%p
+  Users
+
+%ul
+  - @users.each do |u|
+    %li
+      %img{:src => gravatar_url(u.email, :size => 30)}
+      =u.email
