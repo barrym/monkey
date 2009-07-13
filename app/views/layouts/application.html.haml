@@ -11,5 +11,7 @@
   .container
     .header.span-24
       %a{:href => root_path}Home
+      - if signed_in?
+        Signed in as #{current_user.display_name}
     .main.span-24
       = yield
