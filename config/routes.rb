@@ -34,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
 
+  map.sign_up '/sign_up', :controller => "users", :action => "new"
+
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.

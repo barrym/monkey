@@ -4,4 +4,8 @@ class UsersController < Clearance::UsersController
     @users = User.all
   end
 
+  # def new
+  #   render :text => "nope"
+  # end
+
 end
