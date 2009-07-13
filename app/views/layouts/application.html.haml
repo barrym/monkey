@@ -13,5 +13,6 @@
       %a{:href => root_path}Home
       - if signed_in?
         Signed in as #{current_user.display_name}
+        %a{:href => edit_user_path(current_user)}Settings
     .main.span-24
       = yield

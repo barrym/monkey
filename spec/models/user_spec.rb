@@ -9,6 +9,8 @@ describe User do
     }
   end
 
+  it "should ensure email is unique"
+
   it "should have a name" do
     @user = User.new(valid_params.merge( :name => "barrym" ))
     @user.name.should == "barrym"

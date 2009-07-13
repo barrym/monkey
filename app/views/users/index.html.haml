@@ -5,4 +5,4 @@
   - @users.each do |u|
     %li
       %img{:src => gravatar_url(u.email, :size => 30)}
-      =u.email
+      %a{:href => user_path(u)}#{u.display_name}

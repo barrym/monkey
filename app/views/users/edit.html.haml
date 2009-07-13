@@ -1,0 +1,11 @@
+-form_for(@user) do |f|
+  %h1 #{@user.display_name}
+
+  %img{:src => gravatar_url(@user.email)}
+
+  %p
+    =f.label :name
+    =f.text_field(:name)
+
+  =f.submit
+
