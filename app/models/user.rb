@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :name
 
+  has_many :folders
+
   def display_name
     self.name || self.email
   end
