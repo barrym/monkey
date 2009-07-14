@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "site"
 
   map.resources :users
+  map.resources :folders
 
   map.sign_up '/sign_up', :controller => "users", :action => "new"
 

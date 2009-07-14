@@ -11,6 +11,7 @@
   .container
     .header.span-24
       %a{:href => root_path}Home
+      %a{:href => folders_path}Folders
       - if signed_in?
         Signed in as #{current_user.display_name}
         %a{:href => edit_user_path(current_user)}Settings
