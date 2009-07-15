@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090715185048) do
+ActiveRecord::Schema.define(:version => 20090715193517) do
 
   create_table "folders", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(:version => 20090715185048) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "thing_attributes", :force => true do |t|
+    t.integer  "thing_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "thing_attributes", ["thing_id", "key"], :name => "index_thing_attributes_on_thing_id_and_key", :unique => true
 
   create_table "things", :force => true do |t|
     t.integer  "user_id"

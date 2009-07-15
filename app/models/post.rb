@@ -14,4 +14,5 @@
 
 class Post < Thing
 
+  ATTRIBUTES = [:subject]
 end
