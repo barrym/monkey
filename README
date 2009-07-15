@@ -24,10 +24,12 @@ class Thing < ActiveRecord::Base
   :id
   :hash
   :user_id
+  :parent_id
   :folder_id
+  :type
   :timestamps
 
-  belong_to :folder
+  belongs_to :folder
 end
 
 
