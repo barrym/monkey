@@ -12,9 +12,6 @@
 #  updated_at :datetime
 #
 
-class Thing < ActiveRecord::Base
+class Post < Thing
 
-  belongs_to :user
-
-  validates_presence_of :user
 end

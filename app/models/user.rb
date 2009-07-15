@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090712192739
+# Schema version: 20090715185048
 #
 # Table name: users
 #
@@ -12,6 +12,7 @@
 #  email_confirmed    :boolean(1)      not null
 #  created_at         :datetime
 #  updated_at         :datetime
+#  name               :string(255)
 #
 
 class User < ActiveRecord::Base
