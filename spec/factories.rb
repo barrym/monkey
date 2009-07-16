@@ -11,5 +11,4 @@ end
 
 Factory.define :entity do |t|
   t.user { User.first || Factory.create(:user) }
-  t.folder { Folder.first || Factory.create(:folder) }
 end

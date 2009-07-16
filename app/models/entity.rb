@@ -16,15 +16,26 @@ class Entity < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :folder
+  belongs_to :parent, :foreign_key => :parent_id, :class_name => "Entity"
+  has_many :children, :foreign_key => :parent_id, :class_name => "Entity"
 
   has_many :entity_attributes
 
   validates_presence_of :user
-  validates_presence_of :folder
 
   after_save :save_attributes
 
   ATTRIBUTES = []
+
+  def initialize(*params)
+    params.first.each do |attr, value|
+      if self.class::ATTRIBUTES.include?(attr.to_sym)
+        self.send("#{attr}=", value)
+        params.first.delete(attr)
+      end
+    end if params.first
+    super *params
+  end
 
   private
 
@@ -65,6 +76,5 @@ class Entity < ActiveRecord::Base
       super
     end
   end
-
 
 end

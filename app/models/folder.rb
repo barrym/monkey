@@ -12,11 +12,9 @@
 #  updated_at  :datetime
 #
 
-class Folder < ActiveRecord::Base
+class Folder < Entity
 
-  validates_presence_of :name, :user
-
-  belongs_to :user
+  ATTRIBUTES = [:name]
 
   # def to_param
   #   "thisisahash"

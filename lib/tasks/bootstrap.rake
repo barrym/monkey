@@ -12,7 +12,8 @@ namespace :monkey do
     @general = Folder.create!(:name => "General", :user => @barry)
     @gaming = Folder.create!(:name => "Gaming", :user => @barry)
 
-    Post.create(:user => @barry, :folder => @general)
+    puts "Creating posts"
+    Post.create(:user => @barry, :parent => @general, :subject => "This is a test post", :body => "This is the test body")
 
     puts "All Done"
   end

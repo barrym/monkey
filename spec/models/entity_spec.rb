@@ -20,12 +20,12 @@ describe Entity do
     entity.should be_valid
   end
 
-  it "should belong to a folder" do
+  xit "should belong to a folder" do
     entity = Entity.new(:folder => @folder)
     entity.folder.should == @folder
   end
 
-  it "should require a folder" do
+  xit "should require a folder" do
     entity = Factory.build(:entity, :folder => nil)
     entity.should_not be_valid
     entity.should have(1).error_on(:folder)
