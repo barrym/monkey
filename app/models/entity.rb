@@ -1,7 +1,7 @@
 # == Schema Information
-# Schema version: 20090715185048
+# Schema version: 20090715193517
 #
-# Table name: things
+# Table name: entities
 #
 #  id         :integer(4)      not null, primary key
 #  user_id    :integer(4)
@@ -12,30 +12,32 @@
 #  updated_at :datetime
 #
 
-class Thing < ActiveRecord::Base
+class Entity < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :folder
 
-  has_many :thing_attributes
+  has_many :entity_attributes
 
   validates_presence_of :user
   validates_presence_of :folder
 
   after_save :save_attributes
 
+  ATTRIBUTES = []
+
   private
 
   def save_attributes
     old_attrs = {}
-    self.thing_attributes.each do |attr|
+    self.entity_attributes.each do |attr|
       old_attrs[attr.key] = attr.value
     end
-    self.thing_attributes.destroy_all
-    attrs_to_save = old_attrs.merge(@thing_attributes_cache || {})
+    self.entity_attributes.destroy_all
+    attrs_to_save = old_attrs.merge(@entity_attributes_cache || {})
     self.class::ATTRIBUTES.each do |attr|
       if value = attrs_to_save[attr]
-        self.thing_attributes.create(:key => attr.to_s, :value => value)
+        self.entity_attributes.create(:key => attr.to_s, :value => value)
       end
     end
   end
@@ -44,20 +46,20 @@ class Thing < ActiveRecord::Base
     # TODO : seriously rethink this. Maybe ;)
     bare_symbol = symbol.to_s.gsub(/=$/,'').to_sym
     if self.class::ATTRIBUTES.include?(bare_symbol)
-      @thing_attributes_cache ||= {}
+      @entity_attributes_cache ||= {}
       # This is a getter or a setter for an attribute
       if symbol == bare_symbol
         # It's a getter
-        if @thing_attributes_cache.has_key?(symbol)
-          @thing_attributes_cache[symbol]
-        elsif db_attr = self.thing_attributes.find_by_key(symbol.to_s)
-          @thing_attributes_cache[symbol] = db_attr.value
+        if @entity_attributes_cache.has_key?(symbol)
+          @entity_attributes_cache[symbol]
+        elsif db_attr = self.entity_attributes.find_by_key(symbol.to_s)
+          @entity_attributes_cache[symbol] = db_attr.value
         else
-          @thing_attributes_cache[symbol] = nil
+          @entity_attributes_cache[symbol] = nil
         end
       else
         # It's a setter
-        @thing_attributes_cache[bare_symbol] = args.first
+        @entity_attributes_cache[bare_symbol] = args.first
       end
     else
       super

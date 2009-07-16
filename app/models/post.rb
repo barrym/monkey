@@ -1,7 +1,7 @@
 # == Schema Information
-# Schema version: 20090715185048
+# Schema version: 20090715193517
 #
-# Table name: things
+# Table name: entities
 #
 #  id         :integer(4)      not null, primary key
 #  user_id    :integer(4)
@@ -12,7 +12,7 @@
 #  updated_at :datetime
 #
 
-class Post < Thing
+class Post < Entity
 
   ATTRIBUTES = [:subject, :body]
 end

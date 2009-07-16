@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   attr_accessible :name
 
   has_many :folders
-  has_many :things
+  has_many :entities
 
   def display_name
     self.name || self.email

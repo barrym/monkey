@@ -11,30 +11,30 @@
 
 ActiveRecord::Schema.define(:version => 20090715193517) do
 
-  create_table "folders", :force => true do |t|
+  create_table "entities", :force => true do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "global"
+    t.integer  "folder_id"
+    t.integer  "parent_id"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "thing_attributes", :force => true do |t|
-    t.integer  "thing_id"
+  create_table "entity_attributes", :force => true do |t|
+    t.integer  "entity_id"
     t.string   "key"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "thing_attributes", ["thing_id", "key"], :name => "index_thing_attributes_on_thing_id_and_key", :unique => true
+  add_index "entity_attributes", ["entity_id", "key"], :name => "index_entity_attributes_on_entity_id_and_key", :unique => true
 
-  create_table "things", :force => true do |t|
+  create_table "folders", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "folder_id"
-    t.integer  "parent_id"
-    t.string   "type"
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "global"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -18,13 +18,13 @@ describe User do
     @user.display_name.should == "barry.mitchelson@gmail.com"
   end
 
-  it "should have many things" do
+  it "should have many entities" do
     @user = Factory.create(:user)
-    @user.things.should == []
+    @user.entities.should == []
 
-    thing = Factory.create(:thing)
-    @user.things << thing
-    @user.things.should == [thing]
+    entity = Factory.create(:entity)
+    @user.entities << entity
+    @user.entities.should == [entity]
   end
 
   it "should have many folders" do
