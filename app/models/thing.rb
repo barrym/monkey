@@ -35,13 +35,13 @@ class Thing < ActiveRecord::Base
     attrs_to_save = old_attrs.merge(@thing_attributes_cache || {})
     self.class::ATTRIBUTES.each do |attr|
       if value = attrs_to_save[attr]
-        self.thing_attributes.create(:key => attr.to_s, :value => value.to_yaml)
+        self.thing_attributes.create(:key => attr.to_s, :value => value)
       end
     end
   end
 
   def method_missing(symbol, *args)
-    # TODO : seriously rethink this
+    # TODO : seriously rethink this. Maybe ;)
     bare_symbol = symbol.to_s.gsub(/=$/,'').to_sym
     if self.class::ATTRIBUTES.include?(bare_symbol)
       @thing_attributes_cache ||= {}
@@ -51,7 +51,7 @@ class Thing < ActiveRecord::Base
         if @thing_attributes_cache.has_key?(symbol)
           @thing_attributes_cache[symbol]
         elsif db_attr = self.thing_attributes.find_by_key(symbol.to_s)
-          @thing_attributes_cache[symbol] = YAML.load(db_attr.value)
+          @thing_attributes_cache[symbol] = db_attr.value
         else
           @thing_attributes_cache[symbol] = nil
         end
