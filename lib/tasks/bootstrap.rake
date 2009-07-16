@@ -1,6 +1,6 @@
 namespace :monkey do
   desc "Bootstraps app"
-  task :bootstrap => :environment do
+  task :bootstrap => [:environment, "db:migrate:reset"] do
     User.delete_all
     Folder.delete_all
 
@@ -11,6 +11,8 @@ namespace :monkey do
     puts "Creating folders"
     @general = Folder.create!(:name => "General", :user => @barry)
     @gaming = Folder.create!(:name => "Gaming", :user => @barry)
+
+    Post.create(:user => @barry, :folder => @general)
 
     puts "All Done"
   end

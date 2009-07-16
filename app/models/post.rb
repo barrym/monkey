@@ -14,5 +14,5 @@
 
 class Post < Thing
 
-  ATTRIBUTES = [:subject]
+  ATTRIBUTES = [:subject, :body]
 end

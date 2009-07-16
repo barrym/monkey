@@ -27,9 +27,16 @@ class Thing < ActiveRecord::Base
   private
 
   def save_attributes
-    self.thing_attributes.delete_all
+    old_attrs = {}
+    self.thing_attributes.each do |attr|
+      old_attrs[attr.key] = attr.value
+    end
+    self.thing_attributes.destroy_all
+    attrs_to_save = old_attrs.merge(@thing_attributes_cache || {})
     self.class::ATTRIBUTES.each do |attr|
-      # TODO : save here
+      if value = attrs_to_save[attr]
+        self.thing_attributes.create(:key => attr.to_s, :value => value.to_yaml)
+      end
     end
   end
 
@@ -44,7 +51,7 @@ class Thing < ActiveRecord::Base
         if @thing_attributes_cache.has_key?(symbol)
           @thing_attributes_cache[symbol]
         elsif db_attr = self.thing_attributes.find_by_key(symbol.to_s)
-          @thing_attributes_cache[symbol] = Marshal.load(db_attr)
+          @thing_attributes_cache[symbol] = YAML.load(db_attr.value)
         else
           @thing_attributes_cache[symbol] = nil
         end
