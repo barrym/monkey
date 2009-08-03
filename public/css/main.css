@@ -8,14 +8,17 @@
   background-color: #ffccff; }
 
 .post {
-  border: 1px solid;
-  background-color: #ffff00; }
+  float: left;
+  border-bottom: 1px solid;
+  border-color: #cccccc;
+  background-color: #ffffff; }
+  .post .seperator {
+    border-left: 1px solid; }
+  .post h2 {
+    font-size: 1.2em; }
 
 textarea {
   width: 500px;
   height: 30px;
   font-family: Helvetica;
   font-size: 1em; }
-
-form {
-  border: 1px solid; }

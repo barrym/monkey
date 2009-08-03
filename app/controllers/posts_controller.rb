@@ -9,6 +9,7 @@ class PostsController < ApplicationController
       render :update do |page|
         page << 'clearNewPostForm()'
         page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => @post})
+        page[dom_id(@post)].highlight
         # page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => @post, :hide_post => true})
         # page << "Effect.SlideDown('#{dom_id(@post)}')"
       end

@@ -1,9 +1,10 @@
 -remote_form_for(:post, :url => folder_posts_path(@folder)) do |f|
   -# =f.label :w
-  #new_post_subject{:style => 'display:none'}
-    =f.text_field :subject
+  #new_post_subject
+    =f.text_field :subject, :value => "Click here to post"
 
-  =f.text_area :body
+  #new_post_body{:style => 'display:none'}
+    =f.text_area :body
 
   #new_post_submit{:style => 'display:none'}
     =submit_tag "Post"

@@ -1,8 +1,11 @@
--if @hide_post
-  .post{:style => 'display:none', :id => dom_id(post)}
-    %h2 #{post.subject} by #{post.user.display_name}
-    %p= post.body
--else
-  .post{:id => dom_id(post)}
-    %h2 #{post.subject} by #{post.user.display_name}
+- style = @hide_post ? 'display:none' : ''
+.post{:style => style, :id => dom_id(post)}
+  .span-2
+    &nbsp;
+  .span-22.last
+    %h2 #{post.subject}
+  .span-2
+    -# %img{:src => gravatar_url(post.user.email, :size => 20)}
+    %a{:href => user_path(post.user)}#{post.user.display_name}
+  .span-22.last
     %p= post.body
