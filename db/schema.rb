@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090716203055) do
+ActiveRecord::Schema.define(:version => 20090803161455) do
 
   create_table "entities", :force => true do |t|
     t.integer  "user_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20090716203055) do
   create_table "entity_attributes", :force => true do |t|
     t.integer  "entity_id"
     t.string   "key"
-    t.string   "value"
+    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
