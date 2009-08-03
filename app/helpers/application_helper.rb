@@ -14,4 +14,19 @@ module ApplicationHelper
     grav_url
   end
 
+  def post_preview(text)
+    logger.info(text)
+    logger.info("size : #{text.size}")
+    if text.size > 300
+      truncate(text, :length => 200, :omission => "...")
+    else
+      text.bbcode_to_html
+    end
+  end
+
+  def pretty_time(time)
+    meridian = time.hour >= 12 ? "pm" : "am"
+    time.strftime("%a %b %d %l:%M#{meridian}")
+  end
+
 end

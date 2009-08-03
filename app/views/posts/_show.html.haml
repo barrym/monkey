@@ -1,11 +1,8 @@
 - style = @hide_post ? 'display:none' : ''
 .post{:style => style, :id => dom_id(post)}
-  .span-2
-    &nbsp;
-  .span-22.last
-    %h2 #{post.subject}
-  .span-2
-    -# %img{:src => gravatar_url(post.user.email, :size => 20)}
-    %a{:href => user_path(post.user)}#{post.user.display_name}
-  .span-22.last
-    %p= post.body.bbcode_to_html
+  %div
+    .span-2
+      %a{:href => user_path(post.user)}#{post.user.display_name}
+    .span-22.last
+      %h2 #{post.subject} @ #{pretty_time(post.created_at)}
+      = post_preview(post.body)

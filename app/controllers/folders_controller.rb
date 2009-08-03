@@ -24,6 +24,10 @@ class FoldersController < ApplicationController
           page << "loaded_entities.push(#{post.id})"
         end
       end
+      # sleep 3
+      # page << "console.log('finished')"
+      # page << "console.log(checking_entities)"
+      # logger.info("done")
     end
   end
 

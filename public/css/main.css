@@ -12,8 +12,8 @@
   border-bottom: 1px solid;
   border-color: #cccccc;
   background-color: #ffffff; }
-  .post .seperator {
-    border-left: 1px solid; }
+  .post p {
+    margin: 0; }
   .post h2 {
     font-size: 1.2em; }
 

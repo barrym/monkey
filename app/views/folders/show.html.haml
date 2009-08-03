@@ -11,7 +11,22 @@
 
 :javascript
   var loaded_entities = [#{@entities.map {|e| e.id}.join(',')}];
+  //var checking_entities = false;
 
   new PeriodicalExecuter(function() {
-    new Ajax.Request('/folders/#{@folder.id}/add_new_entities?loaded_entities=' + loaded_entities, {method : 'get'});
-  }, 5);
+    //if(checking_entities != 122)
+    //{
+      checking_entities = true;
+      new Ajax.Request(
+        '/folders/#{@folder.id}/add_new_entities?loaded_entities=' + loaded_entities,
+        {
+          method : 'get',
+          //onComplete:function(a) { checking_entities = false;console.log("done"); },
+          //onFailure:function(a) { console.log('fail'); },
+          //on304:function(a) {console.log('304!');}
+        }
+      );
+    //} else {
+    //  console.log("busy");
+    //}
+  }, 15);
