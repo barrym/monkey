@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :entities
 
   def display_name
-    self.name || self.email
+    self.name.blank? ? self.email : self.name
   end
 
 end

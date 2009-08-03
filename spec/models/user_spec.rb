@@ -18,6 +18,11 @@ describe User do
     @user.display_name.should == "barry.mitchelson@gmail.com"
   end
 
+  it "should display email as display name if name is blank" do
+    @user = Factory.build(:user, :name => '')
+    @user.display_name.should == "barry.mitchelson@gmail.com"
+  end
+
   it "should have many entities" do
     @user = Factory.create(:user)
     @user.entities.should == []

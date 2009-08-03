@@ -6,7 +6,6 @@ class PostsController < ApplicationController
     # TODO: some validations here
     @post = Post.create!(params[:post].merge(:parent => @folder, :user => current_user))
     if request.xhr?
-      logger.info("omg ajax")
       render :update do |page|
         page << 'clearNewPostForm()'
         page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => @post})
