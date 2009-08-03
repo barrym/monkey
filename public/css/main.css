@@ -17,8 +17,12 @@
   .post h2 {
     font-size: 1.2em; }
 
+input[type=text] {
+  width: 300px; }
+
 textarea {
-  width: 500px;
-  height: 30px;
+  padding: 0;
+  width: 300px;
+  height: auto;
   font-family: Helvetica;
   font-size: 1em; }

@@ -19,7 +19,7 @@ class FoldersController < ApplicationController
       unless @new_entities.empty?
         @new_entities.each do |post|
           page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => post, :hide_post => true})
-          page << "Effect.SlideDown('#{dom_id(post)}')"
+          page << "Effect.SlideDown('#{dom_id(post)}', {duration: 0.5})"
           # page[dom_id(post)].highlight
           page << "loaded_entities.push(#{post.id})"
         end

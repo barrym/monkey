@@ -1,8 +1,12 @@
 - style = @hide_post ? 'display:none' : ''
 .post{:style => style, :id => dom_id(post)}
   %div
-    .span-2
+    .span-20.last
+      .span-16
+        %h2 #{post.subject}
+      .span-4.last{:style => "text-align:right;"}
+        #{pretty_time(post.created_at)}
+      .span-20
+        = post_preview(post.body)
+    .span-3.prepend-1
       %a{:href => user_path(post.user)}#{post.user.display_name}
-    .span-22.last
-      %h2 #{post.subject} @ #{pretty_time(post.created_at)}
-      = post_preview(post.body)
