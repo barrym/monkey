@@ -8,3 +8,10 @@
       = render :partial => "posts/show", :locals => {:post => e}
     - else
       something else
+
+:javascript
+  var loaded_entities = [#{@entities.map {|e| e.id}.join(',')}];
+
+  new PeriodicalExecuter(function() {
+    new Ajax.Request('/folders/#{@folder.id}/add_new_entities?loaded_entities=' + loaded_entities, {method : 'get'});
+  }, 5);

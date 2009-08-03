@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "site"
 
   map.resources :users
-  map.resources :folders do |folder|
+  map.resources :folders, :member => {:add_new_entities => :get} do |folder|
     folder.resources :posts
   end
 

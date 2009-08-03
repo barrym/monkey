@@ -37,6 +37,10 @@ class Entity < ActiveRecord::Base
     super *params
   end
 
+  def recent_children(limit = 20)
+    self.children.find(:all, :order => 'id desc', :limit => limit)
+  end
+
   private
 
   def save_attributes
