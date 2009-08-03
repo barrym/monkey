@@ -8,4 +8,4 @@
     -# %img{:src => gravatar_url(post.user.email, :size => 20)}
     %a{:href => user_path(post.user)}#{post.user.display_name}
   .span-22.last
-    %p= post.body
+    %p= post.body.bbcode_to_html
