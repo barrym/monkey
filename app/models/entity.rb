@@ -54,6 +54,7 @@ class Entity < ActiveRecord::Base
   end
 
   def method_missing(symbol, *args)
+    logger.info("#{self} called #{symbol} with #{args}")
     # TODO : seriously rethink this. Maybe ;)
     bare_symbol = symbol.to_s.gsub(/=$/,'').to_sym
     if self.class::ATTRIBUTES.include?(bare_symbol)

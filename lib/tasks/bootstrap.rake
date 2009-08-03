@@ -8,6 +8,12 @@ namespace :monkey do
     @barry = User.create!(:email => "barry.mitchelson@gmail.com", :name => "barrym", :password => "password")
     @barry.confirm_email!
 
+    @tony = User.create!(:email => "lasersarebrilliant@gmail.com", :name => "Tony Coles", :password => "password")
+    @tony.confirm_email!
+
+    @mark = User.create!(:email => "mark.sorrell@gmail.com", :name => "Mark Sorrell", :password => "password")
+    @mark.confirm_email!
+
     puts "Creating folders"
     @general = Folder.create!(:name => "General", :user => @barry)
     @gaming = Folder.create!(:name => "Gaming", :user => @barry)

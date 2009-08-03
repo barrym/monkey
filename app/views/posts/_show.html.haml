@@ -1,0 +1,8 @@
+-if @hide_post
+  .post{:style => 'display:none', :id => dom_id(post)}
+    %h2 #{post.subject} by #{post.user.display_name}
+    %p= post.body
+-else
+  .post{:id => dom_id(post)}
+    %h2 #{post.subject} by #{post.user.display_name}
+    %p= post.body

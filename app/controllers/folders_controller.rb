@@ -7,7 +7,7 @@ class FoldersController < ApplicationController
   end
 
   def show
-
+    @entities = @folder.children.find(:all, :order => 'id desc', :limit => 20)
   end
 
   private

@@ -1,1 +1,10 @@
 %h1 #{@folder.name}
+
+=render "posts/form" if signed_in?
+
+#entities
+  - @entities.each do |e|
+    - if e.is_a?(Post)
+      = render :partial => "posts/show", :locals => {:post => e}
+    - else
+      something else

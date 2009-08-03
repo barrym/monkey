@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090803125953) do
+ActiveRecord::Schema.define(:version => 20090716203055) do
 
   create_table "entities", :force => true do |t|
     t.integer  "user_id"
@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20090803125953) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "ref",        :limit => 16
   end
 
   create_table "entity_attributes", :force => true do |t|
