@@ -7,3 +7,4 @@
 
   #new_post_submit{:style => 'display:none'}
     =submit_tag "Post"
+    = link_to_function "Cancel", "clearNewPostForm()"

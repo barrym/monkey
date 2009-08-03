@@ -8,9 +8,7 @@ class PostsController < ApplicationController
     if request.xhr?
       logger.info("omg ajax")
       render :update do |page|
-        page << 'hideNewPostForm()'
-        page << "$('post_subject').clear()"
-        page << "$('post_body').clear()"
+        page << 'clearNewPostForm()'
         page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => @post})
         # page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => @post, :hide_post => true})
         # page << "Effect.SlideDown('#{dom_id(@post)}')"

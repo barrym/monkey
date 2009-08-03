@@ -20,3 +20,11 @@ function hideNewPostForm() {
     Effect.BlindUp('new_post_submit', { duration: 0.3 });
   }
 }
+
+function clearNewPostForm() {
+  if($('new_post_subject').visible()) {
+    hideNewPostForm();
+    $('post_subject').clear();
+    $('post_body').clear();
+  }
+}
