@@ -1,0 +1,13 @@
+* Chat bot for notifications and posting
+* Tweets posted to site
+* Friendfeed shares posted to site
+* Bookmarklet for sharing links etc.. on site
+* RSS feeds
+* Likes
+* Searching/filtering
+* Private messages
+* Watched users
+* Watched threads
+* Dashboardish info on main page
+* Marked as unread posts in classic view
+* Touch parent object updated_at after reply
