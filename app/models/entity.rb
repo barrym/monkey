@@ -38,7 +38,7 @@ class Entity < ActiveRecord::Base
   end
 
   def recent_children(limit = 20)
-    self.children.find(:all, :order => 'id desc', :limit => limit)
+    self.children.find(:all, :order => 'updated_at desc', :limit => limit)
   end
 
   private
