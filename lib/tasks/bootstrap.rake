@@ -16,7 +16,7 @@ namespace :monkey do
 
     puts "Creating folders"
     @general = Folder.create!(:name => "General", :user => @barry)
-    @gaming = Folder.create!(:name => "Gaming", :user => @barry)
+    # @gaming = Folder.create!(:name => "Gaming", :user => @barry)
 
     puts "Creating tweets"
     @b_tweet = @general.tweets.create(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now)
