@@ -1,0 +1,23 @@
+- style = @hide_tweet ? 'display:none' : ''
+.tweet_container.span-20.prepend-2.append-2
+  .tweet.span-20{:style => style, :id => dom_id(tweet)}
+    %div
+      .span-1
+        %a{:href => user_path(tweet.user), :title => tweet.user.display_name}
+          %img{:src => gravatar_url(tweet.user.email, :size => 35)}
+      .span-19.last
+        .span-19
+          = tweet.body
+        .span-19
+          &nbsp;
+          %br
+          Tweeted #{time_ago_in_words(tweet.created_at)} ago
+          by
+          %a{:href => user_path(tweet.user)}#{tweet.user.display_name}
+          =link_to_function("Comment", "showCommentForm('#{dom_id(tweet)}')")
+    - unless tweet.comments.empty?
+      .span-20{:id => "#{dom_id(tweet)}_comments" }
+        - tweet.comments.each do |comment|
+          = render comment
+  .span-18.prepend-2{:id => "#{dom_id(tweet)}_comment", :style => "display:none;"}
+    = render :partial => "comments/form", :locals => {:entity => tweet}

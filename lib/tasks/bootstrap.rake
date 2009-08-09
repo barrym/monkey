@@ -18,6 +18,9 @@ namespace :monkey do
     @general = Folder.create!(:name => "General", :user => @barry)
     @gaming = Folder.create!(:name => "Gaming", :user => @barry)
 
+    puts "Creating tweets"
+    @b_tweet = @general.tweets.create(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now)
+
     puts "Creating posts"
     @m_post = @general.posts.create(:user => @mark, :subject => "Wassup", :body => "What's my name?\n\n\nWhat's my name?\n\n")
     @m_post.comments.create(:user => @barry, :body => "Mark!")

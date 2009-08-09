@@ -21,8 +21,7 @@ class User < ActiveRecord::Base
   attr_accessible :name
 
   has_many :folders
-  # TODO : make this has_many_polymorphs
-  has_many_polymorphs :entities, :from => [:posts, :comments]
+  has_many_polymorphs :entities, :from => [:posts, :comments, :tweets]
 
   def display_name
     self.name.blank? ? self.email : self.name
