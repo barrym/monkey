@@ -1,4 +1,4 @@
-class Reply < Entity
-
-  ATTRIBUTES = [:body]
+class Reply < ActiveRecord::Base
+  belongs_to :post
+  belongs_to :user
 end

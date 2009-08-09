@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090809102153) do
+ActiveRecord::Schema.define(:version => 20090809102952) do
 
   create_table "children_folders", :force => true do |t|
     t.integer  "child_id"
@@ -48,9 +48,17 @@ ActiveRecord::Schema.define(:version => 20090809102153) do
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "folder_id"
     t.string   "name"
     t.string   "subject"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "replies", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.string   "name"
     t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
