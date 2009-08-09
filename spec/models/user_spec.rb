@@ -23,7 +23,7 @@ describe User do
     @user.display_name.should == "barry.mitchelson@gmail.com"
   end
 
-  it "should have many entities" do
+  xit "should have many entities" do
     @user = Factory.create(:user)
     @user.entities.should == []
 

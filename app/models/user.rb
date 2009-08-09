@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   has_many :folders
   # TODO : make this has_many_polymorphs
-  has_many :entities
+  # has_many :entities
 
   def display_name
     self.name.blank? ? self.email : self.name
