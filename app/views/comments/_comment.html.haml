@@ -1,0 +1,17 @@
+.span-20{:id => dom_id(comment)}
+  .span-1
+    %a{:href => "aa", :id => "#{dom_id(comment)}_actions", :style => "display:none;"}R
+    &nbsp;
+  .span-1
+    %a{:href => user_path(comment.user), :title => comment.user.display_name}
+      %img{:src => gravatar_url(comment.user.email, :size => 30)}
+  .span-18.last
+    = post_preview(comment.body)
+    #{time_ago_in_words(comment.created_at)} ago
+:javascript
+  Event.observe('#{dom_id(comment)}','mouseover', function() {
+    $('#{dom_id(comment)}_actions').show();
+  });
+  Event.observe('#{dom_id(comment)}','mouseout', function() {
+    $('#{dom_id(comment)}_actions').hide();
+  });

@@ -12,7 +12,7 @@
 #  updated_at :datetime
 #
 
-class Reply < ActiveRecord::Base
+class Comment < ActiveRecord::Base
   belongs_to :post
   belongs_to :user
 end

@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   attr_accessible :name
 
   has_many :folders
+  # TODO : make this has_many_polymorphs
   has_many :entities
 
   def display_name

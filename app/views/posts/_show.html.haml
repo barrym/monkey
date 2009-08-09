@@ -17,8 +17,8 @@
         #{time_ago_in_words(post.created_at)} ago
         by
         %a{:href => user_path(post.user)}#{post.user.display_name}
-  - unless post.replies.empty?
-    .span-20{:id => "#{dom_id(post)}_replies" }
-      - post.replies.each do |reply|
-        = render reply
+  - unless post.comments.empty?
+    .span-20{:id => "#{dom_id(post)}_comments" }
+      - post.comments.each do |comment|
+        = render comment
   %hr
