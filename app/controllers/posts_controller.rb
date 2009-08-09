@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def create
     # TODO: some validations here
-    @post = Post.create!(params[:post].merge(:parent => @folder, :user => current_user))
+    @post = @folder.posts.create!(params[:post].merge(:user => current_user))
     if request.xhr?
       render :update do |page|
         page << 'clearNewPostForm()'
@@ -18,6 +18,8 @@ class PostsController < ApplicationController
 
     end
   rescue => e
+    debugger
+    nil
     # Handle crap
   end
 
