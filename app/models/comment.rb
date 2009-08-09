@@ -1,12 +1,11 @@
 # == Schema Information
 # Schema version: 20090809102952
 #
-# Table name: replies
+# Table name: comments
 #
 #  id         :integer(4)      not null, primary key
 #  user_id    :integer(4)
-#  post_id    :integer(4)
-#  name       :string(255)
+#  entity_id  :integer(4)
 #  body       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
