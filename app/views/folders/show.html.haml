@@ -3,11 +3,8 @@
 =render "posts/form" if signed_in?
 
 #entities
-  - @entities.each do |e|
-    - if e.is_a?(Post)
-      = render :partial => "posts/show", :locals => {:post => e}
-    - else
-      something else
+  - @entities.each do |entity|
+    = render entity
 
 :javascript
   var loaded_entities = [#{@entities.map {|e| e.id}.join(',')}];
