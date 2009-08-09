@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090803161455) do
+ActiveRecord::Schema.define(:version => 20090808210650) do
+
+  create_table "children_folders", :force => true do |t|
+    t.integer  "child_id"
+    t.string   "child_type"
+    t.integer  "folder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "entities", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +36,15 @@ ActiveRecord::Schema.define(:version => 20090803161455) do
   end
 
   add_index "entity_attributes", ["entity_id", "key"], :name => "index_entity_attributes_on_entity_id_and_key", :unique => true
+
+  create_table "folders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "global"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"

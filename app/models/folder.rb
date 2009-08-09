@@ -12,12 +12,19 @@
 #  updated_at  :datetime
 #
 
-class Folder < Entity
+class Folder < ActiveRecord::Base
 
-  ATTRIBUTES = [:name]
+  belongs_to :user
+  has_many_polymorphs :children, :from => [:posts]
+
+  validates_presence_of :user
 
   # def to_param
   #   "thisisahash"
   # end
+
+  def recent_children(limit = 20)
+    self.children.find(:all, :order => 'children_folders.updated_at desc', :limit => limit)
+  end
 
 end
