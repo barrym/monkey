@@ -8,14 +8,11 @@
 
 :javascript
   var loaded_entities = [#{@entities.map {|e| e.id}.join(',')}];
-  //var checking_entities = false;
+  var loaded_comments = [#{@entities.collect{|e| e.comments}.flatten.map {|e| e.id}.join(',')}];
 
   new PeriodicalExecuter(function() {
-    //if(checking_entities != 122)
-    //{
-      checking_entities = true;
       new Ajax.Request(
-        '/folders/#{@folder.id}/add_new_entities?loaded_entities=' + loaded_entities,
+        '/folders/#{@folder.id}/add_new_entities?loaded_entities=' + loaded_entities + '&loaded_comments=' + loaded_comments,
         {
           method : 'get',
           //onComplete:function(a) { checking_entities = false;console.log("done"); },
@@ -23,7 +20,4 @@
           //on304:function(a) {console.log('304!');}
         }
       );
-    //} else {
-    //  console.log("busy");
-    //}
-  }, 25);
+  }, 5);

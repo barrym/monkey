@@ -13,7 +13,13 @@ class FoldersController < ApplicationController
 
   def add_new_entities
     @loaded_entities = params[:loaded_entities].split(",")
-    @new_entities = @folder.recent_children.reject {|c| @loaded_entities.include?(c.id.to_s)}
+    @loaded_comments = params[:loaded_comments].split(",")
+    @recent_entities = @folder.recent_children
+
+    @new_entities = @recent_entities.reject {|c| @loaded_entities.include?(c.id.to_s)}
+
+    @new_comments = (@recent_entities - @new_entities).collect {|e| e.comments}.flatten.reject {|c| @loaded_comments.include?(c.id.to_s)}
+
     logger.info(@new_entities.inspect)
     render :update do |page|
       unless @new_entities.empty?
@@ -22,6 +28,14 @@ class FoldersController < ApplicationController
           page << "Effect.SlideDown('#{dom_id(post)}', {duration: 0.5})"
           # page[dom_id(post)].highlight
           page << "loaded_entities.push(#{post.id})"
+        end
+      end
+      unless @new_comments.empty?
+        @new_comments.each do |comment|
+          page.insert_html(:bottom, dom_id(comment.entity), :partial => 'comments/comment', :locals => {:comment => comment})
+          page << "Effect.SlideDown('#{dom_id(comment)}', {duration: 0.5})"
+          # page[dom_id(post)].highlight
+          page << "loaded_comments.push(#{comment.id})"
         end
       end
       # sleep 3
