@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is wlly included by javascript_include_tag :defaults
 
-Event.observe(window, 'load', function() {
+Event.observe(document, 'dom:loaded', function() {
   Event.observe('post_subject', 'focus', function() {
     showNewPostForm();
   });
