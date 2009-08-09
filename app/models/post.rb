@@ -18,4 +18,11 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :foreign_key => :entity_id
 
+  after_save :update_entities
+
+  private
+  def update_entities
+    self.user.entities << self
+  end
+
 end

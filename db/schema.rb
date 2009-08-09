@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090809102952) do
+ActiveRecord::Schema.define(:version => 20090809123622) do
 
   create_table "children_folders", :force => true do |t|
     t.integer  "child_id"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20090809102952) do
     t.integer  "user_id"
     t.integer  "parent_id"
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "entities_users", :force => true do |t|
+    t.integer  "entity_id"
+    t.string   "entity_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

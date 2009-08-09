@@ -14,4 +14,11 @@
 class Comment < ActiveRecord::Base
   belongs_to :post
   belongs_to :user
+
+  after_save :update_entities
+
+  private
+  def update_entities
+    self.user.entities << self
+  end
 end
