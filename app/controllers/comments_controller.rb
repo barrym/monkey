@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @comment = @entity.comments.create(:user => current_user, :body => params[:comment][:body])
     if request.xhr?
       render :update do |page|
+        page << "loaded_comments.push(#{@comment.id})"
         page << "hideCommentForm('#{dom_id(@entity)}')"
         page.insert_html(:bottom, dom_id(@entity), :partial => 'comments/comment', :locals => {:comment => @comment})
         page[dom_id(@comment)].highlight
