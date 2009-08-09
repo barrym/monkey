@@ -12,7 +12,7 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :post
+  belongs_to :entity, :polymorphic => true
   belongs_to :user
 
   after_save :update_entities

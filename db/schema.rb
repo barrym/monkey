@@ -22,15 +22,8 @@ ActiveRecord::Schema.define(:version => 20090809123622) do
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "entity_id"
+    t.string   "entity_type"
     t.string   "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "entities", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "parent_id"
-    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,16 +35,6 @@ ActiveRecord::Schema.define(:version => 20090809123622) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "entity_attributes", :force => true do |t|
-    t.integer  "entity_id"
-    t.string   "key"
-    t.text     "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "entity_attributes", ["entity_id", "key"], :name => "index_entity_attributes_on_entity_id_and_key", :unique => true
 
   create_table "folders", :force => true do |t|
     t.integer  "user_id"
