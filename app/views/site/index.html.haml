@@ -1,4 +1,4 @@
-%h2 Monkey
+%h1 Monkey
 
 - if !signed_in?
   %a{:href => sign_up_path}Sign up
@@ -8,3 +8,18 @@
   %a{:href => sign_out_path}Sign out
 
 %a{:href => users_path}users
+
+%h2 Known Issues
+
+%ul
+  %li Nested quoting doesn't work in comments
+  %li Posts and comments sometimes get rendered twice
+
+%h2 CHANGELOG
+
+Since last deploy :
+
+%ul
+  %li Added commenting
+
+

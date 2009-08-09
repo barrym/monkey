@@ -15,7 +15,7 @@
 class Folder < ActiveRecord::Base
 
   belongs_to :user
-  has_many_polymorphs :children, :from => [:posts]
+  has_many_polymorphs :children, :from => [:posts,:tweets]
 
   validates_presence_of :user
 
@@ -24,7 +24,7 @@ class Folder < ActiveRecord::Base
   # end
 
   def recent_children(limit = 20)
-    self.children.find(:all, :order => 'children_folders.updated_at desc', :limit => limit)
+    self.children.find(:all, :order => "IFNULL(posts.updated_at, IFNULL(tweets.updated_at,'')) desc", :limit => limit)
   end
 
 end

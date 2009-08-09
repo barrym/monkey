@@ -15,10 +15,16 @@ class Comment < ActiveRecord::Base
   belongs_to :entity, :polymorphic => true
   belongs_to :user
 
-  after_save :update_entities
+  after_save :update_entities, :touch_parent
 
   private
+
   def update_entities
     self.user.entities << self
   end
+
+  def touch_parent
+    self.entity.update_attributes(:updated_at => Time.now)
+  end
+
 end
