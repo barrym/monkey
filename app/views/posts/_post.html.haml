@@ -18,7 +18,7 @@
           #{time_ago_in_words(post.created_at)} ago
           by
           %a{:href => user_path(post.user)}#{post.user.display_name}
-          =link_to_function("Comment", "showCommentForm('#{dom_id(post)}')")
+          =link_to_function("Comment", "showCommentForm('#{dom_id(post)}')") if signed_in?
     - unless post.comments.empty?
       .span-20{:id => "#{dom_id(post)}_comments" }
         - post.comments.each do |comment|

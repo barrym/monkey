@@ -6,8 +6,9 @@
     = post_preview(comment.body)
     #{time_ago_in_words(comment.created_at)} ago
   .span-1
-    = link_to_function("Quote", :id => "#{dom_id(comment)}_actions", :style => "display:none") do |page|
-      - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
+    - if signed_in?
+      = link_to_function("Quote", :id => "#{dom_id(comment)}_actions", :style => "display:none") do |page|
+        - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
       -# - page["#{dom_id(comment)}_comment"].show
       // showReply('entity_X', 'body')
 -# .span-18.prepend-2{:id => "#{dom_id(comment)}_comment", :style => "display:none;"}
