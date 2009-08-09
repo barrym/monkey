@@ -12,7 +12,9 @@
 #  updated_at :datetime
 #
 
-class Post < Entity
+class Post < ActiveRecord::Base
 
-  ATTRIBUTES = [:subject, :body]
+  # belongs_to :folder
+  belongs_to :user
+
 end
