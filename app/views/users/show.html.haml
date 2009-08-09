@@ -1,3 +1,7 @@
 %h1 #{@user.display_name}
 
 %img{:src => gravatar_url(@user.email)}
+
+%h2 Shit from #{@user.display_name}
+- @user.entities.each do |entity|
+  = render entity
