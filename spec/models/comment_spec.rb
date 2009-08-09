@@ -1,13 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe Reply do
+describe Comment do
   before(:each) do
     @valid_attributes = {
-      
+
     }
   end
 
   it "should create a new instance given valid attributes" do
-    Reply.create!(@valid_attributes)
+    Comment.create!(@valid_attributes)
   end
 end
