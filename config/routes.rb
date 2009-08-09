@@ -7,6 +7,12 @@ ActionController::Routing::Routes.draw do |map|
     folder.resources :posts
   end
 
+  # map.resources :entities do |post|
+  #   post.resources :comments
+  # end
+
+  map.add_comment '/entity/:entity_type/:entity_id/comment', :controller => 'comments', :action => 'create', :method => :post
+
   map.sign_up '/sign_up', :controller => "users", :action => "new"
 
   # See how all your routes lay out with "rake routes"

@@ -29,3 +29,15 @@ function clearNewPostForm() {
     hideNewPostForm();
   }
 }
+
+function showCommentForm(dom_id, body) {
+  body = (body || "");
+  $(dom_id + '_comment_body').value = body;
+  $(dom_id + '_comment').show();
+  $(dom_id + '_comment_body').focus();
+}
+
+function hideCommentForm(dom_id) {
+  // $(dom_id + '_comment_body').value = body;
+  $(dom_id + '_comment').hide();
+}

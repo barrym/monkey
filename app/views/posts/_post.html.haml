@@ -1,24 +1,28 @@
 - style = @hide_post ? 'display:none' : ''
-.post.span-20.prepend-2.append-2{:style => style, :id => dom_id(post)}
-  %div
-    .span-1
-      %a{:href => user_path(post.user), :title => post.user.display_name}
-        %img{:src => gravatar_url(post.user.email, :size => 35)}
-    .span-19.last
-      .span-19
-        %h2 #{post.subject}
-        -# .span-4.last{:style => "text-align:right;"}
-        -#   #{pretty_time(post.created_at)}
-      .span-19
-        = post_preview(post.body)
-      .span-19
-        &nbsp;
-        %br
-        #{time_ago_in_words(post.created_at)} ago
-        by
-        %a{:href => user_path(post.user)}#{post.user.display_name}
-  - unless post.comments.empty?
-    .span-20{:id => "#{dom_id(post)}_comments" }
-      - post.comments.each do |comment|
-        = render comment
-  %hr
+.post_container.span-20.prepend-2.append-2
+  .post.span-20{:style => style, :id => dom_id(post)}
+    %div
+      .span-1
+        %a{:href => user_path(post.user), :title => post.user.display_name}
+          %img{:src => gravatar_url(post.user.email, :size => 35)}
+      .span-19.last
+        .span-19
+          %h2 #{post.subject}
+          -# .span-4.last{:style => "text-align:right;"}
+          -#   #{pretty_time(post.created_at)}
+        .span-19
+          = post_preview(post.body)
+        .span-19
+          &nbsp;
+          %br
+          #{time_ago_in_words(post.created_at)} ago
+          by
+          %a{:href => user_path(post.user)}#{post.user.display_name}
+          =link_to_function("Comment", "showCommentForm('#{dom_id(post)}')")
+    - unless post.comments.empty?
+      .span-20{:id => "#{dom_id(post)}_comments" }
+        - post.comments.each do |comment|
+          = render comment
+    -# %hr
+  .span-18.prepend-2{:id => "#{dom_id(post)}_comment", :style => "display:none;"}
+    = render :partial => "comments/form", :locals => {:entity => post}

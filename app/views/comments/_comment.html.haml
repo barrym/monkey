@@ -1,17 +1,24 @@
-.span-20{:id => dom_id(comment)}
-  .span-1
-    %a{:href => "aa", :id => "#{dom_id(comment)}_actions", :style => "display:none;"}R
-    &nbsp;
+.span-19.prepend-1.comment{:id => dom_id(comment)}
   .span-1
     %a{:href => user_path(comment.user), :title => comment.user.display_name}
       %img{:src => gravatar_url(comment.user.email, :size => 30)}
-  .span-18.last
+  .span-17.last
     = post_preview(comment.body)
     #{time_ago_in_words(comment.created_at)} ago
+  .span-1
+    = link_to_function("Quote", :id => "#{dom_id(comment)}_actions", :style => "display:none") do |page|
+      - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
+      -# - page["#{dom_id(comment)}_comment"].show
+      // showReply('entity_X', 'body')
+-# .span-18.prepend-2{:id => "#{dom_id(comment)}_comment", :style => "display:none;"}
+-#   = render :partial => "comments/form", :locals => {:entity => comment.entity, :body => "[quote=#{comment.user.display_name}]#{comment.body}[/quote]" }
+
 :javascript
   Event.observe('#{dom_id(comment)}','mouseover', function() {
     $('#{dom_id(comment)}_actions').show();
+    $('#{dom_id(comment)}').toggleClassName('comment_highlight');
   });
   Event.observe('#{dom_id(comment)}','mouseout', function() {
     $('#{dom_id(comment)}_actions').hide();
+    $('#{dom_id(comment)}').toggleClassName('comment_highlight');
   });

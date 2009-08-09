@@ -1,7 +1,7 @@
 -remote_form_for(:comment, :url => add_comment_path(:entity_type => entity.class, :entity_id => entity.id)) do |f|
   %div
-    =text_area_tag "comment[body]", (body || ""), :cols => 90, :rows => 15
+    =text_area_tag "comment[body]", nil, :id => "#{dom_id(entity)}_comment_body",:cols => 90, :rows => 15
 
   %div
     =submit_tag "Comment"
-    Cancel
+    = link_to_function("Cancel", "hideCommentForm('#{dom_id(entity)}')")
