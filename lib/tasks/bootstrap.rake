@@ -14,8 +14,11 @@ namespace :monkey do
     @mark = User.create!(:email => "mark.sorrell@gmail.com", :name => "Mark Sorrell", :password => "password")
     @mark.confirm_email!
 
+    @stiff = User.create!(:email => "hyper.steve@gmail.com", :name => "Stiff", :password => "password")
+    @stiff.confirm_email!
+
     puts "Creating folders"
-    @general = Folder.create!(:name => "General", :user => @barry)
+    @general = Folder.create!(:name => "Off Topic", :user => @barry)
     # @gaming = Folder.create!(:name => "Gaming", :user => @barry)
 
     puts "Creating tweets"
@@ -30,6 +33,10 @@ namespace :monkey do
     @b_post = @general.posts.create(:user => @barry, :subject => "This is a test post", :body => "Some place in Dean Street apparently. The Couch is safe, sadly. Apparently a Chinese restaurant, but that's only what twitter is saying.\n\ntalking of bears, have you wasted 99 cents on Enviro-bear yet?")
     @b_post.comments.create(:user => @tony, :body => "[quote=#{@barry.display_name}]#{@b_post.body}[/quote]\nSweet post, bro")
     @b_post.comments.create(:user => @mark, :body => "Yeah, sweet post, bro")
+
+    sleep 1
+
+    @s_post = @general.posts.create(:user => @stiff, :subject => "Check out my new trainers, bro", :body => "[img]http://pictureslol.theshining.org/pictures/4070/Picture_20hi_20tec_20squash_preview.jpg[/img]")
 
     puts "All Done"
   end

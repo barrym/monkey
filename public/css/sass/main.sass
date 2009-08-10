@@ -4,11 +4,22 @@ body
 .container
   :background-color #cccccc
 
-.header
-  :background-color #ccffff
-
-.main
+#header
   :background-color #cccccc
+
+#main
+  :background-color #cccccc
+
+#sidebar
+  div
+    :padding 5px
+    :margin
+      :bottom 5px
+    :background-color #ffffff
+    :border 1px solid black
+    :-moz-border-radius 10px
+    :-webkit-border-radius 10px
+
 
 h1
   :font
@@ -26,7 +37,6 @@ h2
   :padding
     :top 5px
     :bottom 5px
-  :float left
   :background-color #ffffff
   :-moz-border-radius 10px
   :-webkit-border-radius 10px
@@ -37,14 +47,15 @@ h2
   :padding
     :top 5px
     :bottom 5px
-  :float left
-  :background-color #9AE4E8
+  :background-color #BCF6FA
   :-moz-border-radius 10px
   :-webkit-border-radius 10px
   :border 1px solid #000
   :margin-bottom 2px
 
 .comment
+  :background
+    :color #ffffff
   :border
     :top 1px dashed #ccc
   :padding
@@ -53,10 +64,6 @@ h2
 .comment_highlight
   :background
     :color #eeeeee
-
-// .inner_post
-//   :float left
-
   p
     :margin 0
 
@@ -64,6 +71,13 @@ h2
     :font
       :size 1.2em
       :weight bold
+
+.meta
+  :font
+    :size 0.8em
+  :color #aaaaaa
+
+
 
 input[type=text]
   :width 400px

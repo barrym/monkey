@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20090809183104) do
     t.integer  "user_id"
     t.integer  "entity_id"
     t.string   "entity_type"
-    t.string   "body"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

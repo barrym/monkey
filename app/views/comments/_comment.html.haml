@@ -1,18 +1,14 @@
-.span-19.prepend-1.comment{:id => dom_id(comment)}
-  .span-1
+%div{:class => "span-#{@entity_columns-1} comment last", :id => dom_id(comment)}
+  %div.span-1
     %a{:href => user_path(comment.user), :title => comment.user.display_name}
       %img{:src => gravatar_url(comment.user.email, :size => 30)}
-  .span-17.last
+  %div{:class => "span-#{@entity_columns - 1} last"}
     = post_preview(comment.body)
+  %div{:class => "span-#{@entity_columns - 1} meta"}
     #{time_ago_in_words(comment.created_at)} ago
-  .span-1{:id => "#{dom_id(comment)}_actions", :style => "display:none"}
     - if signed_in?
-      = link_to_function("Quote") do |page|
+      = link_to_function("Quote", :id => "#{dom_id(comment)}_actions", :style => "display:none") do |page|
         - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
-      -# - page["#{dom_id(comment)}_comment"].show
-      // showReply('entity_X', 'body')
--# .span-18.prepend-2{:id => "#{dom_id(comment)}_comment", :style => "display:none;"}
--#   = render :partial => "comments/form", :locals => {:entity => comment.entity, :body => "[quote=#{comment.user.display_name}]#{comment.body}[/quote]" }
 
 :javascript
   Event.observe('#{dom_id(comment)}','mouseover', function() {

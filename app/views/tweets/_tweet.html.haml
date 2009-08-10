@@ -1,23 +1,24 @@
 - style = @hide_tweet ? 'display:none' : ''
-.tweet_container.span-20.prepend-2.append-2
-  .tweet.span-20{:style => style, :id => dom_id(tweet)}
-    %div
-      .span-1
-        %a{:href => user_path(tweet.user), :title => tweet.user.display_name}
-          %img{:src => gravatar_url(tweet.user.email, :size => 35)}
-      .span-19.last
-        .span-19
-          = tweet.body
-        .span-19
-          &nbsp;
-          %br
-          Tweeted #{time_ago_in_words(tweet.created_at)} ago
-          by
-          %a{:href => user_path(tweet.user)}#{tweet.user.display_name}
-          =link_to_function("Comment", "showCommentForm('#{dom_id(tweet)}')")
+%div{:class => "tweet_container span-#{@main_columns - 2} prepend-1 append-1"}
+  %div{:class => "tweet span-#{@entity_columns}", :style => style, :id => dom_id(tweet)}
+    %div.span-1
+      %a{:href => user_path(tweet.user), :title => tweet.user.display_name}
+        %img{:src => gravatar_url(tweet.user.email, :size => 35)}
+    %div{:class => "span-#{@entity_columns - 1} last"}
+      %div
+        = tweet.body
+      %div.meta
+        &nbsp;
+        %br
+        Tweeted #{time_ago_in_words(tweet.created_at)} ago
+        by
+        %a{:href => user_path(tweet.user)}#{tweet.user.display_name}
+        =link_to_function("Comment", "showCommentForm('#{dom_id(tweet)}')") if signed_in?
     - unless tweet.comments.empty?
-      .span-20{:id => "#{dom_id(tweet)}_comments" }
+      %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(tweet)}_comments"}
         - tweet.comments.each do |comment|
+          .span-1
+            &nbsp;
           = render comment
-  .span-18.prepend-2{:id => "#{dom_id(tweet)}_comment", :style => "display:none;"}
+  %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(tweet)}_comment", :style => "display:none;"}
     = render :partial => "comments/form", :locals => {:entity => tweet}
