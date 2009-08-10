@@ -16,10 +16,10 @@
         %a{:href => user_path(post.user)}#{post.user.display_name}
         =link_to_function("Comment", "showCommentForm('#{dom_id(post)}')") if signed_in?
     - unless post.comments.empty?
-      %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(post)}_comments"}
-        - post.comments.each do |comment|
-          .span-1
-            &nbsp;
-          = render comment
+      -# %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(post)}_comments"}
+      - post.comments.each do |comment|
+        -# .span-1
+        -#   &nbsp;
+        = render comment
   %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(post)}_comment", :style => "display:none;"}
     = render :partial => "comments/form", :locals => {:entity => post}

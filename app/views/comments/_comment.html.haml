@@ -1,14 +1,17 @@
-%div{:class => "span-#{@entity_columns-1} comment last", :id => dom_id(comment)}
+%div{:class => "span-#{@entity_columns}"}
   %div.span-1
-    %a{:href => user_path(comment.user), :title => comment.user.display_name}
-      %img{:src => gravatar_url(comment.user.email, :size => 30)}
-  %div{:class => "span-#{@entity_columns - 1} last"}
-    = post_preview(comment.body)
-  %div{:class => "span-#{@entity_columns - 1} meta"}
-    #{time_ago_in_words(comment.created_at)} ago
-    - if signed_in?
-      = link_to_function("Quote", :id => "#{dom_id(comment)}_actions", :style => "display:none") do |page|
-        - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
+    &nbsp;
+  %div{:class => "span-#{@entity_columns-1} comment last", :id => dom_id(comment)}
+    %div.span-1
+      %a{:href => user_path(comment.user), :title => comment.user.display_name}
+        %img{:src => gravatar_url(comment.user.email, :size => 30)}
+    %div{:class => "span-#{@entity_columns - 2} last"}
+      = post_preview(comment.body)
+    %div{:class => "span-#{@entity_columns - 2} prepend-1 meta last"}
+      #{time_ago_in_words(comment.created_at)} ago
+      - if signed_in?
+        = link_to_function("Quote", :id => "#{dom_id(comment)}_actions", :style => "display:none") do |page|
+          - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
 
 :javascript
   Event.observe('#{dom_id(comment)}','mouseover', function() {

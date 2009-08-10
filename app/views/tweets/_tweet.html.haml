@@ -15,10 +15,10 @@
         %a{:href => user_path(tweet.user)}#{tweet.user.display_name}
         =link_to_function("Comment", "showCommentForm('#{dom_id(tweet)}')") if signed_in?
     - unless tweet.comments.empty?
-      %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(tweet)}_comments"}
-        - tweet.comments.each do |comment|
-          .span-1
-            &nbsp;
-          = render comment
+      -# %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(tweet)}_comments"}
+      - tweet.comments.each do |comment|
+        -# .span-1
+        -#   &nbsp;
+        = render comment
   %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(tweet)}_comment", :style => "display:none;"}
     = render :partial => "comments/form", :locals => {:entity => tweet}
