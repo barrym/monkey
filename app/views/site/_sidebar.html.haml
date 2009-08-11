@@ -1,5 +1,14 @@
-%div
-  This is a sidebar item, this will probably be moved down so shit lines up yo.
+-# %div{:class => "span-#{@sidebar_columns}", :style => "background-color:red"}
+-if signed_in?
+  %div.span-5.item
+    .span-1
+      %img{:src => gravatar_url(current_user.email, :size => 30)}
+    .span-4.last
+      %div
+        %a{:href => user_path(current_user)}#{current_user.display_name}
+      %div
+        %a{:href => edit_user_path(current_user)}Settings
+        %a{:href => sign_out_path}Sign out
 
-%div
+%div.span-5.item
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac viverra urna. Sed lacus turpis, vehicula sit amet lobortis in, commodo ac est. Duis et lectus libero, nec venenatis augue. Fusce ac nulla massa. Etiam velit eros, venenatis sed pretium et, fringilla sit amet mauris. Duis id lectus arcu. Mauris dapibus posuere neque sed luctus. Sed ac justo nec lacus rhoncus commodo venenatis sed lorem. Nulla scelerisque dictum erat, sed posuere risus porttitor vel. Donec suscipit blandit volutpat. Duis sit amet ante quis odio iaculis viverra. Phasellus vehicula luctus hendrerit. Ut neque turpis, venenatis vel pharetra in, tempor a elit. Proin condimentum consectetur enim, ac eleifend nisl semper eu. Donec ac vehicula nunc. Ut interdum justo ut orci commodo mollis sed nec felis. In adipiscing dignissim pharetra. Duis lobortis commodo mi sit amet dictum.

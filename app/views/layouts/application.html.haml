@@ -13,11 +13,10 @@
   .container
     #header.column.span-24
       %a{:href => root_path}Home
+      - unless signed_in?
+        %a{:href => sign_in_path}Sign in
       %a{:href => folders_path}Folders
-      - if signed_in?
-        Signed in as #{current_user.display_name}
-        %a{:href => edit_user_path(current_user)}Settings
-    #main{:class => "column span-#{@main_columns} first"}
+    #main{:class => "column span-#{@main_columns}"}
       = yield
     #sidebar{:class => "column span-#{@sidebar_columns} last"}
       = render :partial => "site/sidebar"
