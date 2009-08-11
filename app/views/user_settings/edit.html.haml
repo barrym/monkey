@@ -1,0 +1,10 @@
+%h1 Settings
+
+- form_for @user_setting, :url => save_settings_path do |f|
+
+    Display mode
+    = f.select :display_mode, [["Normal","normal"],["Classic","classic"]]
+
+    %br
+
+    = submit_tag "Save"

@@ -7,6 +7,9 @@ ActionController::Routing::Routes.draw do |map|
     folder.resources :posts
   end
 
+  map.settings '/settings/', :controller => "user_settings", :action => "edit"
+  map.save_settings '/settings/save', :controller => "user_settings", :action => "update"
+
   # map.resources :entities do |post|
   #   post.resources :comments
   # end
