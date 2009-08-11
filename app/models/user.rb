@@ -20,11 +20,20 @@ class User < ActiveRecord::Base
 
   attr_accessible :name
 
+  has_one :user_setting
   has_many :folders
   has_many_polymorphs :entities, :from => [:posts, :comments, :tweets]
 
+  after_create :add_user_setting
+
   def display_name
     self.name.blank? ? self.email : self.name
+  end
+
+  private
+
+  def add_user_setting
+    self.user_setting = UserSetting.new(:display_mode => 'normal')
   end
 
 end
