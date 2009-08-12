@@ -1,0 +1,24 @@
+%div{:class => "post_container span-#{@main_columns - 2} prepend-1 append-1"}
+  %div{:class => "post span-#{@entity_columns}", :style => @hide_post ? 'display:none;':'', :id => dom_id(@post)}
+    %div.span-1
+      %a{:href => user_path(@post.user), :title => @post.user.display_name}
+        %img{:src => gravatar_url(@post.user.email, :size => 35)}
+    %div{:class => "span-#{@entity_columns - 1} last"}
+      %h2 #{@post.subject}
+      %div
+        = post_preview(@post.body)
+      %div.meta
+        &nbsp;
+        %br
+        Posted #{time_ago_in_words(@post.created_at)} ago
+        by
+        %a{:href => user_path(@post.user)}#{@post.user.display_name}
+        =link_to_function("Comment", "showCommentForm('#{dom_id(@post)}')") if signed_in?
+    - unless @post.comments.empty?
+      -# %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(post)}_comments"}
+      - @post.comments.each do |comment|
+        -# .span-1
+        -#   &nbsp;
+        = render comment
+  %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(@post)}_comment", :style => "display:none;"}
+    = render :partial => "comments/form", :locals => {:entity => @post}

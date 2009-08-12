@@ -30,7 +30,7 @@ class FoldersController < ApplicationController
           page << "loaded_entities.push(#{post.id})"
         end
       end
-      unless @new_comments.empty?
+      unless @new_comments.empty? || current_user.user_setting.display_mode == 'classic'
         @new_comments.each do |comment|
           page.insert_html(:bottom, dom_id(comment.entity), :partial => 'comments/comment', :locals => {:comment => comment})
           page << "Effect.SlideDown('#{dom_id(comment)}', {duration: 0.5})"

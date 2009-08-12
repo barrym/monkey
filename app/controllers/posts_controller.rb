@@ -2,6 +2,10 @@ class PostsController < ApplicationController
 
   before_filter :find_folder
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     # TODO: some validations here
     @post = @folder.posts.create!(params[:post].merge(:user => current_user))
