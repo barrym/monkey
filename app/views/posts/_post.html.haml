@@ -36,5 +36,5 @@
             -# .span-1
             -#   &nbsp;
             = render comment
-      %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(post)}_comment", :style => "display:none;"}
-        = render :partial => "comments/form", :locals => {:entity => post}
+    %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(post)}_comment", :style => "display:none;"}
+      = render :partial => "comments/form", :locals => {:entity => post}
