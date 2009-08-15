@@ -10,13 +10,13 @@ class PostsController < ApplicationController
     # TODO: some validations here
     @post = @folder.posts.create!(params[:post].merge(:user => current_user))
     if request.xhr?
-      render :update do |page|
-        page << 'clearNewPostForm()'
-        page.insert_html(:top, 'entities', :partial => 'posts/post', :locals => {:post => @post})
-        page << "loaded_entities.push(#{@post.id})"
-        page[dom_id(@post)].highlight
-        # page.insert_html(:top, 'entities', :partial => 'posts/show', :locals => {:post => @post, :hide_post => true})
-        # page << "Effect.SlideDown('#{dom_id(@post)}')"
+      render :juggernaut => {:type => :send_to_channels, :channels => [@folder.juggernaut_channel]} do |page|
+        # page << 'clearNewPostForm()'
+        # page.insert_html(:top, 'entities', :partial => 'posts/post', :locals => {:post => @post})
+        # page << "loaded_entities.push(#{@post.id})"
+        # page[dom_id(@post)].highlight
+        page.insert_html(:top, 'entities', :partial => 'posts/post', :locals => {:post => @post, :hide_post => true})
+        page << "Effect.SlideDown('#{dom_id(@post)}', {'duration':0.3})"
       end
     else
 

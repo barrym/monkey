@@ -38,6 +38,13 @@ function showCommentForm(dom_id, body) {
 }
 
 function hideCommentForm(dom_id) {
-  // $(dom_id + '_comment_body').value = body;
   $(dom_id + '_comment').hide();
+}
+
+function displayNewComment(entity_dom_id, comment_dom_id, content) {
+  if($(entity_dom_id)) {
+    Element.insert(entity_dom_id, {bottom: content});
+    // Effect.SlideDown(comment_dom_id, {duration: 0.5});
+    $(comment_dom_id).highlight();
+  }
 }

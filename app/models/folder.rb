@@ -27,4 +27,8 @@ class Folder < ActiveRecord::Base
     self.children.find(:all, :order => "IFNULL(posts.updated_at, IFNULL(tweets.updated_at,'')) desc", :limit => limit)
   end
 
+  def juggernaut_channel
+    "folder_#{self.id}"
+  end
+
 end

@@ -5,11 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @entity.comments.create(:user => current_user, :body => params[:comment][:body])
     if request.xhr?
-      render :update do |page|
-        page << "loaded_comments.push(#{@comment.id})"
-        page << "hideCommentForm('#{dom_id(@entity)}')"
-        page.insert_html(:bottom, dom_id(@entity), :partial => 'comments/comment', :locals => {:comment => @comment})
-        page[dom_id(@comment)].highlight
+      html_output = render_to_string :partial => 'comments/comment', :locals => {:comment => @comment}
+      render :juggernaut => {:type => :send_to_channels, :channels => [@comment.entity.folders.first.juggernaut_channel]} do |page|
+        page << "displayNewComment('#{dom_id(@entity)}', '#{dom_id(@comment)}', '#{escape_javascript(html_output)}');"
       end
     else
       # TODO not ajax
