@@ -1,4 +1,4 @@
--remote_form_for(:post, :url => folder_posts_path(@folder)) do |f|
+-remote_form_for(:post, :url => folder_posts_path(@folder), :complete => "clearNewPostForm()") do |f|
   -# =f.label :w
   #new_post_subject
     =f.text_field :subject, :value => "Click here to post"
