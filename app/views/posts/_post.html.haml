@@ -5,7 +5,7 @@
         %a{:href => user_path(post.user), :title => post.user.display_name}
           %img{:src => gravatar_url(post.user.email, :size => 35)}
       %div{:class => "span-#{@entity_columns - 1} last"}
-        %a{:href => folder_post_path(@folder,post)}#{post.subject}
+        %a{:href => post_path(post)}#{post.subject}
         %br
         %span.meta
           Posted #{time_ago_in_words(post.created_at)} ago
@@ -30,11 +30,9 @@
             by
             %a{:href => user_path(post.user)}#{post.user.display_name}
             =link_to_function("Comment", "showCommentForm('#{dom_id(post)}')") if signed_in?
-        - unless post.comments.empty?
-          -# %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(post)}_comments"}
-          - post.comments.each do |comment|
-            -# .span-1
-            -#   &nbsp;
-            = render comment
+        = render :partial => 'comments/comments', :locals => {:entity => post}
+        -# %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(post)}_comments"}
+        -#   - post.comments.each do |comment|
+        -#     = render comment
     %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(post)}_comment", :style => "display:none;"}
       = render :partial => "comments/form", :locals => {:entity => post}

@@ -1,0 +1,3 @@
+%div{:class => "span-#{@entity_columns}", :id => "#{dom_id(entity)}_comments"}
+  -entity.comments.each do |comment|
+    = render comment

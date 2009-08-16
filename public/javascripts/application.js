@@ -76,9 +76,19 @@ function hideCommentForm(dom_id) {
 }
 
 function displayNewComment(entity_dom_id, comment_dom_id, content) {
-  if($(entity_dom_id)) {
-    Element.insert(entity_dom_id, {bottom: content});
+  if($(entity_dom_id + '_comments')) {
+    Element.insert(entity_dom_id + '_comments', {bottom: content});
     // Effect.SlideDown(comment_dom_id, {duration: 0.5});
     $(comment_dom_id).highlight();
+    reRenderComments(entity_dom_id);
+  }
+}
+
+function reRenderComments(entity_dom_id) {
+  if($(entity_dom_id + '_comments')) {
+    console.log("here");
+    comments = $$('#' + entity_dom_id + '_comments div.comment');
+    console.debug(comments);
+    console.log(comments.size());
   }
 }

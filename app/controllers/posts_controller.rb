@@ -15,8 +15,8 @@ class PostsController < ApplicationController
     else
 
     end
-  # rescue => e
-  #   render :text => "DO SOMETHING TO FIX THIS"
+  rescue => e
+    render :text => "DO SOMETHING TO FIX THIS"
   end
 
 end
