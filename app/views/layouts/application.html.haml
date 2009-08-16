@@ -16,6 +16,7 @@
       - unless signed_in?
         %a{:href => sign_in_path}Sign in
       %a{:href => categories_path}Categories
+      %a{:href => users_path}Users
     #main{:class => "column span-#{@main_columns}"}
       = yield
     #sidebar{:class => "column span-#{@sidebar_columns} last"}

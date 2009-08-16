@@ -26,7 +26,9 @@ namespace :monkey do
     @b_tweet = Tweet.create!(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now, :category_ids => [@tweets.id])
 
     puts "Creating posts"
-    @m_post = Post.create!(:user => @mark, :subject => "Wassup", :body => "What's my name?\n\n\nWhat's my name?\n\n", :category_ids => [@general.id])
+    @m_post = Post.create!(:user => @mark, :subject => "I <3 my iPhone", :body => "I hug it every morning.\n[img]http://pictureslol.theshining.org/pictures/4092/iPhoneGen1_preview.png[/img]", :category_ids => [@iphone.id])
+
+    @m_post = Post.create!(:user => @mark, :subject => "Wassup", :body => "What's my name?", :category_ids => [@general.id])
     @m_post.comments.create(:user => @barry, :body => "Mark!")
 
     sleep 1 # force the timestamps

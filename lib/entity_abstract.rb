@@ -26,12 +26,9 @@ module EntityAbstract
 
   def update_categorised_entities
     ids = self.category_ids
-    puts "Updating cat ents for #{self.inspect}"
-    puts "cat_ids = #{ids.inspect}"
     CategorisedEntity.delete_all(:entity_type => self.class.to_s, :entity_id => self.id)
     ids.each do |category_id|
-      foo = CategorisedEntity.create(:category => Category.find(category_id), :entity => self)
-      puts "created #{foo.inspect}"
+      CategorisedEntity.create(:category => Category.find(category_id), :entity => self)
     end
   end
 
