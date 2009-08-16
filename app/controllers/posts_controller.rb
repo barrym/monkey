@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def create
     # TODO: some validations here
-    @post = Post.create!(params[:post].merge(:user => current_user))
+    @post = Post.create!(params[:post].merge(:user => current_user, :category_ids => params[:category_ids].split(',')))
     if request.xhr?
       render :juggernaut => {:type => :send_to_channels, :channels => @post.juggernaut_channels} do |page|
         page.insert_html(:top, 'entities', :partial => 'posts/post', :locals => {:post => @post, :hide_post => true})

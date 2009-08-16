@@ -16,11 +16,10 @@ namespace :monkey do
     @stiff.confirm_email!
 
     puts "Creating categories"
-    # @general = Folder.create!(:name => "Off Topic", :user => @barry)
     @general = Category.create!(:name => "Off Topic")
     @iphone = Category.create!(:name => "iPhone")
     @tweets = Category.create!(:name => "Tweets", :system => true)
-    # @gaming = Folder.create!(:name => "Gaming", :user => @barry)
+    @gaming = Category.create!(:name => "Gaming")
 
     puts "Creating tweets"
     @b_tweet = Tweet.create!(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now, :category_ids => [@tweets.id])
