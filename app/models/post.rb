@@ -17,10 +17,13 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :foreign_key => :entity_id, :as => :entity
 
-  after_save :update_entities
+  belongs_to :categorised_entity
+
+
+  after_save :update_user_entities
 
   private
-  def update_entities
+  def update_user_entities
     self.user.entities << self
   end
 
