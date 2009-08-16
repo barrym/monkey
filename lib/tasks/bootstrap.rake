@@ -1,8 +1,6 @@
 namespace :monkey do
   desc "Bootstraps app"
   task :bootstrap => [:environment, "db:migrate:reset"] do
-    User.delete_all
-    Folder.delete_all
 
     puts "Creating users"
     @barry = User.create!(:email => "barry.mitchelson@gmail.com", :name => "barrym", :password => "password")
@@ -17,26 +15,27 @@ namespace :monkey do
     @stiff = User.create!(:email => "hyper.steve@gmail.com", :name => "Stiff", :password => "password")
     @stiff.confirm_email!
 
-    puts "Creating folders"
-    @general = Folder.create!(:name => "Off Topic", :user => @barry)
+    puts "Creating categories"
+    # @general = Folder.create!(:name => "Off Topic", :user => @barry)
+    @general = Category.create!(:name => "Off Topic")
     # @gaming = Folder.create!(:name => "Gaming", :user => @barry)
 
     puts "Creating tweets"
-    @b_tweet = @general.tweets.create(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now)
+    # @b_tweet = @general.tweets.create(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now)
 
     puts "Creating posts"
-    @m_post = @general.posts.create(:user => @mark, :subject => "Wassup", :body => "What's my name?\n\n\nWhat's my name?\n\n")
+    @m_post = Post.create!(:user => @mark, :subject => "Wassup", :body => "What's my name?\n\n\nWhat's my name?\n\n", :category_ids => [@general.id])
     @m_post.comments.create(:user => @barry, :body => "Mark!")
 
     sleep 1 # force the timestamps
 
-    @b_post = @general.posts.create(:user => @barry, :subject => "This is a test post", :body => "Some place in Dean Street apparently. The Couch is safe, sadly. Apparently a Chinese restaurant, but that's only what twitter is saying.\n\ntalking of bears, have you wasted 99 cents on Enviro-bear yet?")
+    @b_post = Post.create!(:user => @barry, :subject => "This is a test post", :body => "Some place in Dean Street apparently. The Couch is safe, sadly. Apparently a Chinese restaurant, but that's only what twitter is saying.\n\ntalking of bears, have you wasted 99 cents on Enviro-bear yet?", :category_ids => [@general.id])
     @b_post.comments.create(:user => @tony, :body => "[quote=#{@barry.display_name}]#{@b_post.body}[/quote]\nSweet post, bro")
     @b_post.comments.create(:user => @mark, :body => "Yeah, sweet post, bro")
 
     sleep 1
 
-    @s_post = @general.posts.create(:user => @stiff, :subject => "Check out my new trainers, bro", :body => "[img]http://pictureslol.theshining.org/pictures/4070/Picture_20hi_20tec_20squash_preview.jpg[/img]")
+    @s_post = Post.create!(:user => @stiff, :subject => "Check out my new trainers, bro", :body => "[img]http://pictureslol.theshining.org/pictures/4070/Picture_20hi_20tec_20squash_preview.jpg[/img]", :category_ids => [@general.id])
 
     puts "All Done"
   end

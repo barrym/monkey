@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20090816095542) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.boolean  "system"
+    t.boolean  "system",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,15 +48,6 @@ ActiveRecord::Schema.define(:version => 20090816095542) do
     t.integer  "entity_id"
     t.string   "entity_type"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "folders", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "global"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

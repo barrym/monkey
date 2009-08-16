@@ -4,10 +4,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
 
-  map.resources :folders do |folder|
-    folder.resources :posts
-  end
-
   map.resources :categories do |category|
     category.resources :posts
   end

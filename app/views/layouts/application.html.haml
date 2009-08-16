@@ -15,7 +15,7 @@
       %a{:href => root_path}Home
       - unless signed_in?
         %a{:href => sign_in_path}Sign in
-      %a{:href => folders_path}Folders
+      %a{:href => categories_path}Categories
     #main{:class => "column span-#{@main_columns}"}
       = yield
     #sidebar{:class => "column span-#{@sidebar_columns} last"}
