@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.settings '/settings/', :controller => "user_settings", :action => "edit"
   map.save_settings '/settings/save', :controller => "user_settings", :action => "update"
 
+  map.bookmarklet '/bookmarklet', :controller => 'site', :action => 'bookmarklet'
+
   # map.resources :entities do |post|
   #   post.resources :comments
   # end
