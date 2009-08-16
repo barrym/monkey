@@ -18,10 +18,12 @@ namespace :monkey do
     puts "Creating categories"
     # @general = Folder.create!(:name => "Off Topic", :user => @barry)
     @general = Category.create!(:name => "Off Topic")
+    @iphone = Category.create!(:name => "iPhone")
+    @tweets = Category.create!(:name => "Tweets", :system => true)
     # @gaming = Folder.create!(:name => "Gaming", :user => @barry)
 
     puts "Creating tweets"
-    # @b_tweet = @general.tweets.create(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now)
+    @b_tweet = Tweet.create!(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now, :category_ids => [@tweets.id])
 
     puts "Creating posts"
     @m_post = Post.create!(:user => @mark, :subject => "Wassup", :body => "What's my name?\n\n\nWhat's my name?\n\n", :category_ids => [@general.id])
