@@ -3,9 +3,16 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "site"
 
   map.resources :users
-  map.resources :folders, :member => {:add_new_entities => :get} do |folder|
+
+  map.resources :folders do |folder|
     folder.resources :posts
   end
+
+  map.resources :categories do |category|
+    category.resources :posts
+  end
+
+  map.resources :posts
 
   map.settings '/settings/', :controller => "user_settings", :action => "edit"
   map.save_settings '/settings/save', :controller => "user_settings", :action => "update"

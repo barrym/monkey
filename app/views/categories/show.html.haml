@@ -1,0 +1,9 @@
+= juggernaut(:channels => ["category_#{@category.id}"])
+
+%h1 #{@category.name}
+
+=render "posts/form" if signed_in?
+
+#entities
+  - @category.entities.each do |entity|
+    = render entity

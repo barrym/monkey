@@ -10,6 +10,7 @@ Event.observe(document, 'dom:loaded', function() {
 function showNewPostForm() {
   if(!$('new_post_body').visible()) {
     Effect.BlindDown('new_post_body', { duration: 0.3 });
+    Effect.BlindDown('new_post_categories', { duration: 0.3 });
     Effect.BlindDown('new_post_submit', { duration: 0.3 });
     $('post_subject').clear();
   }
@@ -18,6 +19,7 @@ function showNewPostForm() {
 function hideNewPostForm() {
   if($('new_post_body').visible()) {
     Effect.BlindUp('new_post_body', { duration: 0.3 });
+    Effect.BlindUp('new_post_categories', { duration: 0.3 });
     Effect.BlindUp('new_post_submit', { duration: 0.3 });
   }
 }
