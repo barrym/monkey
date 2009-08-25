@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   # end
 
   map.add_comment '/entity/:entity_type/:entity_id/comment', :controller => 'comments', :action => 'create', :method => :post
+  map.display_comment '/comments/:id/display', :controller => 'comments', :action => 'display', :method => :get
 
   map.sign_up '/sign_up', :controller => "users", :action => "new"
 

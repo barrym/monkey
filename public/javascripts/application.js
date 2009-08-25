@@ -76,7 +76,6 @@ function hideCommentForm(dom_id) {
 }
 
 function displayNewPost(post_id) {
-  console.log('adding post ' + post_id);
   new Ajax.Request('/posts/' + post_id + '/display',
       {
         method: 'get',
@@ -86,15 +85,28 @@ function displayNewPost(post_id) {
   );
 }
 
-
-function displayNewComment(entity_dom_id, comment_dom_id, content) {
-  if($(entity_dom_id + '_comments')) {
-    Element.insert(entity_dom_id + '_comments', {bottom: content});
-    // Effect.SlideDown(comment_dom_id, {duration: 0.5});
-    $(comment_dom_id).highlight();
-    reRenderComments(entity_dom_id);
+function displayNewComment(entity_dom_id, comment_id) {
+  // TODO : fix this shit
+  // if comments are here, add a new one
+  if($(entity_dom_id) + '_comments') {
+    new Ajax.Request('/comments/' + comment_id + '/display',
+        {
+          method: 'get',
+          onCreate: function() { $('spinner').show(); },
+          onComplete: function() { $('spinner').hide(); },
+        }
+    );
   }
 }
+
+// function displayNewComment(entity_dom_id, comment_dom_id, content) {
+  // if($(entity_dom_id + '_comments')) {
+  //   Element.insert(entity_dom_id + '_comments', {bottom: content});
+  //   // Effect.SlideDown(comment_dom_id, {duration: 0.5});
+  //   $(comment_dom_id).highlight();
+  //   reRenderComments(entity_dom_id);
+  // }
+// }
 
 function reRenderComments(entity_dom_id) {
   if($(entity_dom_id + '_comments')) {
