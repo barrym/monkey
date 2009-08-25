@@ -88,7 +88,7 @@ function displayNewPost(post_id) {
 function displayNewComment(entity_dom_id, comment_id) {
   // TODO : fix this shit
   // if comments are here, add a new one
-  if($(entity_dom_id) + '_comments') {
+  if($(entity_dom_id + '_comments')) {
     new Ajax.Request('/comments/' + comment_id + '/display',
         {
           method: 'get',
@@ -96,6 +96,10 @@ function displayNewComment(entity_dom_id, comment_id) {
           onComplete: function() { $('spinner').hide(); },
         }
     );
+  } else {
+    // TODO : if the entity is here (ie classic mode)
+    // then call posts/X/update_display
+    // which rerenders that partial with an updated comment/like count
   }
 }
 
