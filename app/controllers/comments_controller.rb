@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
   before_filter :load_entity, :only => [:create]
 
   def display
