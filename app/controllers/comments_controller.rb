@@ -10,8 +10,7 @@ class CommentsController < ApplicationController
     if request.xhr?
       render :update do |page|
         page.insert_html(:bottom, "#{dom_id(@comment.entity)}_comments", :partial => 'comments/comment', :locals => {:comment => @comment, :hide => true})
-        # page << "Effect.SlideDown('#{dom_id(@comment)}', {'duration':0.5})"
-        page << "Effect.SlideDown('#{dom_id(@comment)}', {'duration':1.0})"
+        page << "Effect.SlideDown('#{dom_id(@comment)}', {'duration':0.5})"
       end
     else
 
