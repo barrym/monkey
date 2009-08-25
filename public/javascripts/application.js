@@ -75,6 +75,18 @@ function hideCommentForm(dom_id) {
   $(dom_id + '_comment').hide();
 }
 
+function displayNewPost(post_id) {
+  console.log('adding post ' + post_id);
+  new Ajax.Request('/posts/' + post_id + '/display',
+      {
+        method: 'get',
+        onCreate: function() { $('spinner').show(); },
+        onComplete: function() { $('spinner').hide(); },
+      }
+  );
+}
+
+
 function displayNewComment(entity_dom_id, comment_dom_id, content) {
   if($(entity_dom_id + '_comments')) {
     Element.insert(entity_dom_id + '_comments', {bottom: content});

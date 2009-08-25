@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
     category.resources :posts
   end
 
-  map.resources :posts
+  map.resources :posts, :member => {:display => :get}
 
   map.settings '/settings/', :controller => "user_settings", :action => "edit"
   map.save_settings '/settings/save', :controller => "user_settings", :action => "update"
