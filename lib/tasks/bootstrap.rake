@@ -19,7 +19,11 @@ namespace :monkey do
     @general = Category.create!(:name => "Off Topic")
     @iphone = Category.create!(:name => "iPhone")
     @tweets = Category.create!(:name => "Tweets", :system => true)
+    @links = Category.create!(:name => "Links", :system => true)
     @gaming = Category.create!(:name => "Gaming")
+
+    puts "Creating links"
+    @link = Link.create!(:user => @barry, :url => "http://talk.theshining.org", :title => "Old Findus", :domain_id => 1, :category_ids => [@links.id])
 
     puts "Creating tweets"
     @b_tweet = Tweet.create!(:user => @barry, :body => "At Starbucks.", :tweeted_at => Time.now, :category_ids => [@tweets.id])
