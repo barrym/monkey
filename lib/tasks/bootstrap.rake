@@ -15,6 +15,9 @@ namespace :monkey do
     @stiff = User.create!(:email => "hyper.steve@gmail.com", :name => "Stiff", :password => "password")
     @stiff.confirm_email!
 
+    @duncan = User.create!(:email => "duncan.metcalfe@gmail.com", :name => "Duncan", :password => "password")
+    @duncan.confirm_email!
+
     puts "Creating categories"
     @general = Category.create!(:name => "Off Topic")
     @iphone = Category.create!(:name => "iPhone")
