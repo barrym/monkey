@@ -25,8 +25,11 @@ namespace :monkey do
     @links = Category.create!(:name => "Links", :system => true)
     @gaming = Category.create!(:name => "Gaming")
 
+    puts "Creating domains"
+    @theshining_org = Domain.create!(:url => "theshining.org")
+
     puts "Creating links"
-    @old_findus = Link.create!(:url => "http://talk.theshining.org", :title => "Old Findus", :domain_id => 1)
+    @old_findus = Link.create!(:url => "http://talk.theshining.org", :title => "Old Findus", :domain => @theshining_org)
 
     puts "Creating shared links"
     @b_link = SharedLink.create!(:user => @barry, :link => @old_findus, :source_name => "FriendFeed", :source_url => "http://www.friendfeed.com", :original_url => "http://talk.theshining.org", :category_ids => [@links.id])
