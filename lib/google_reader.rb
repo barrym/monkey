@@ -1,37 +1,84 @@
-require 'rubygems'
 require 'httparty'
-require 'ruby-debug'
+# barry_url = "http://www.google.com/reader/public/atom/user%2F18389778775339354804%2Fstate%2Fcom.google%2Fbroadcast"
 
-barry_url = "http://www.google.com/reader/public/atom/user%2F18389778775339354804%2Fstate%2Fcom.google%2Fbroadcast"
+module GoogleReader
 
-class GoogleReader
-  include HTTParty
-  format :xml
-end
+  class Feed
+    include HTTParty
+    format :xml
 
-def actual_url(url)
-  case response = Net::HTTP.get_response(URI.parse(url))
-  when Net::HTTPFound
-    # puts response.code
-    response['location']
-  else
-    url
+    def initialize(url)
+      @url = url
+    end
+
+    def entries
+      unless @entries
+        data = self.class.get(@url)
+        @entries = data['feed']['entry'].map { |entry| GoogleReader::Entry.new(entry) }
+      end
+      @entries
+    end
+
+    def inspect
+      {:url => @url}
+    end
+
   end
+
+  class Entry
+    include SharedLinkHelpers
+
+    def initialize(data)
+      @data = data
+    end
+
+    def title
+      @data['title']
+    end
+
+    def entry_id
+      @data['id']
+    end
+
+    def original_url
+      @data['link']['href']
+    end
+
+    def url
+      @url ||= actual_url(original_url)
+    end
+
+    def source_name
+      @data['source']['title']
+    end
+
+    def original_source_url
+      @data['source']['link']['href']
+    end
+
+    def source_url
+      @source_url ||= actual_url(original_source_url)
+    end
+
+    def inspect
+      {:title => self.title}
+    end
+
+  end
+
 end
-
-
-
-data = GoogleReader.get(barry_url)
-
-data['feed']['entry'].each do |element|
-  puts "Title : " << element['title']
-  puts "ID : " << element['id']
-  puts "Article URL : " << element['link']['href']
-  puts "Actual Article URL : " << actual_url(element['link']['href'])
-  # puts "Summary : " << (element['summary'] || 'n/a')
-  puts "Source Name : " << element['source']['title']
-  puts "Source URL : " << element['source']['link']['href']
-  puts "Actual Source URL : " << actual_url(element['source']['link']['href'])
-  puts "-----------------------"
-end
-
+#
+#
+# feed = GoogleReader::Feed.new(barry_url)
+#
+# feed.entries.each do |entry|
+#   puts "Title : " << entry.title
+#   puts "ID : " << entry.entry_id
+#   puts "Article URL : " << entry.original_url
+#   puts "Actual Article URL : " << entry.url
+#   # puts "Summary : " << (element['summary'] || 'n/a')
+#   puts "Source Name : " << entry.source_name
+#   puts "Source URL : " << entry.original_source_url
+#   puts "Actual Source URL : " << entry.source_url
+#   puts "-----------------------"
+# end

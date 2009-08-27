@@ -24,6 +24,14 @@ class SharedLink < ActiveRecord::Base
 
   after_save :update_user_entities
 
+  def self.share(data)
+    link = Link.find_or_create_by_url(:url => data.delete(:url), :title => data.delete(:title))
+    unless self.find(:first, :conditions => {:link_id => link.id, :user_id => data[:user].id})
+      data[:link] = link
+      self.create!(data.merge(:category_ids => [Category.find_by_name('Shared Links').id]))
+    end
+  end
+
   private
 
   def update_user_entities
