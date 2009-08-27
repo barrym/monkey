@@ -4,7 +4,6 @@ class CreateLinks < ActiveRecord::Migration
       t.integer :domain_id
       t.string :url
       t.string :title
-      t.integer :user_id
       t.timestamps
     end
   end

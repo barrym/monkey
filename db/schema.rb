@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090826202043) do
+ActiveRecord::Schema.define(:version => 20090827193159) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20090826202043) do
     t.integer  "domain_id"
     t.string   "url"
     t.string   "title"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,6 +65,17 @@ ActiveRecord::Schema.define(:version => 20090826202043) do
     t.string   "name"
     t.string   "subject"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shared_links", :force => true do |t|
+    t.integer  "link_id"
+    t.integer  "user_id"
+    t.string   "original_url"
+    t.string   "source_url"
+    t.string   "source_name"
+    t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

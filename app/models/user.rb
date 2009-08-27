@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   has_one :user_setting
   has_many :folders
-  has_many_polymorphs :entities, :from => [:posts, :comments, :tweets, :links]
+  has_many_polymorphs :entities, :from => [:posts, :comments, :tweets, :shared_links]
 
   after_create :add_user_setting
 
