@@ -2,9 +2,24 @@
 
 - form_for @user_setting, :url => save_settings_path do |f|
 
+  %p
     Display mode
     = f.select :display_mode, [["Normal","normal"],["Classic","classic"]]
 
-    %br
+  %p
+    Google Reader URL
+    = f.text_field :google_reader_url
 
-    = submit_tag "Save"
+  %p
+    %a{:href => "http://friendfeed.com/remotekey"}FriendFeed details
+
+  %p
+    FriendFeed username
+    = f.text_field :friendfeed_username
+
+  %p
+    FriendFeed remote key
+    = f.text_field :friendfeed_remote_key
+
+
+  = submit_tag "Save"

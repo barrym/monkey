@@ -22,7 +22,7 @@ namespace :monkey do
     @general = Category.create!(:name => "Off Topic")
     @iphone = Category.create!(:name => "iPhone")
     @tweets = Category.create!(:name => "Tweets", :system => true)
-    @links = Category.create!(:name => "Links", :system => true)
+    @links = Category.create!(:name => "Shared Links", :system => true)
     @gaming = Category.create!(:name => "Gaming")
 
     puts "Creating domains"
