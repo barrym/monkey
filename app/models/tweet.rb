@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20090827202915
+#
+# Table name: tweets
+#
+#  id         :integer(4)      not null, primary key
+#  user_id    :integer(4)
+#  body       :string(255)
+#  tweeted_at :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Tweet < ActiveRecord::Base
 
   include EntityAbstract

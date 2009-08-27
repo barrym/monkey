@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090809102952
+# Schema version: 20090827202915
 #
 # Table name: posts
 #
@@ -7,7 +7,7 @@
 #  user_id    :integer(4)
 #  name       :string(255)
 #  subject    :string(255)
-#  body       :string(255)
+#  body       :text
 #  created_at :datetime
 #  updated_at :datetime
 #
