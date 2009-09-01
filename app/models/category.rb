@@ -12,7 +12,10 @@
 #
 
 class Category < ActiveRecord::Base
+
   has_many :categorised_entities
+
+  SHARED_LINK_CATEGORY = self.find_by_name('Shared Links')
 
   def entities
     self.categorised_entities.find(:all, :include => :entity, :order => "updated_at desc", :group => "entity_type, entity_id").map {|ce| ce.entity}
