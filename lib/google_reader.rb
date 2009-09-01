@@ -14,7 +14,7 @@ module GoogleReader
     def entries
       unless @entries
         data = self.class.get(@url)
-        @entries = data['feed']['entry'].map { |entry| GoogleReader::Entry.new(entry) }
+        @entries = data['feed']['entry'].map { |entry| GoogleReader::Entry.new(entry) }.reverse
       end
       @entries
     end
