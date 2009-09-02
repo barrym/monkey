@@ -38,3 +38,29 @@
           -#     = render comment
       %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(shared_link)}_comment", :style => "display:none;"}
         = render :partial => "comments/form", :locals => {:entity => shared_link}
+  -elsif shared_link.source_name == 'FriendFeed'
+    %div{:class => "shared_link_container span-#{@main_columns - 2} prepend-1 append-1"}
+      %div{:class => "shared_link span-#{@entity_columns}", :style => @hide_shared_link ? 'display:none;':'', :id => dom_id(shared_link)}
+        %div
+          %div.span-1
+            %a{:href => user_path(shared_link.user), :title => shared_link.user.display_name}
+              %img{:src => gravatar_url(shared_link.user.email, :size => 35)}
+          %div{:class => "span-#{@entity_columns - 1} last"}
+            -# %a{:href => shared_link.link.url}= shared_link.link.url
+            %div
+              = shared_link.body
+            %div.meta
+              &nbsp;
+              %br
+              Shared #{time_ago_in_words(shared_link.created_at)} ago
+              by
+              %a{:href => user_path(shared_link.user)}#{shared_link.user.display_name}
+              via
+              %a{:href => shared_link.source_url}#{shared_link.source_name}
+              =link_to_function("Comment", "showCommentForm('#{dom_id(shared_link)}')") if signed_in?
+          = render :partial => 'comments/comments', :locals => {:entity => shared_link}
+          -# %div{:class => "span-#{@entity_columns}", :id => "#{dom_id(post)}_comments"}
+          -#   - post.comments.each do |comment|
+          -#     = render comment
+      %div{:class => "span-#{@entity_columns} prepend-2", :id => "#{dom_id(shared_link)}_comment", :style => "display:none;"}
+        = render :partial => "comments/form", :locals => {:entity => shared_link}

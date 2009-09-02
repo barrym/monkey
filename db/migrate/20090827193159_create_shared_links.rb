@@ -6,7 +6,7 @@ class CreateSharedLinks < ActiveRecord::Migration
       t.string :original_url
       t.string :source_url
       t.string :source_name
-      t.string :body
+      t.text :body
       t.timestamps
     end
   end

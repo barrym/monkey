@@ -8,6 +8,8 @@ module SharedLinkHelpers
     else
       url
     end
+  rescue
+    nil
   end
 
 end

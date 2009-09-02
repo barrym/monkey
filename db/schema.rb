@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20090827202915) do
     t.string   "original_url"
     t.string   "source_url"
     t.string   "source_name"
-    t.string   "body"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

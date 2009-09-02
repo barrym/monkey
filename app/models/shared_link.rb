@@ -25,6 +25,7 @@ class SharedLink < ActiveRecord::Base
   after_save :update_user_entities
 
   def self.share(data)
+    raise "No URL in shared link" unless data[:url]
     link = Link.find_or_create_by_url(:url => data.delete(:url), :title => data.delete(:title))
     unless self.find(:first, :conditions => {:link_id => link.id, :user_id => data[:user].id})
       data[:link] = link

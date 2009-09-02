@@ -50,11 +50,8 @@ module FriendFeed
     def original_url
       if @data['body'] =~ /href=\"([^\"]*)\"/
         url = $1
-        puts "extracted : #{url}"
         url
       else
-        puts "extracted nothing"
-        debugger
         nil
       end
     end
