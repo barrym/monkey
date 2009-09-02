@@ -9,6 +9,7 @@ namespace :google do
           feed = GoogleReader::Feed.new(url)
           feed.entries.each do |entry|
             puts entry.title
+            begin
             SharedLink.share(
               :user => user,
               :url => entry.url,
@@ -16,6 +17,9 @@ namespace :google do
               :title => entry.title,
               :source_name => "Google Reader"
             )
+            rescue => e
+              puts "Error!"
+            end
           end
         end
       end

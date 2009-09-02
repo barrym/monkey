@@ -1,6 +1,4 @@
-require 'rubygems'
 require 'httparty'
-require 'ruby-debug'
 
 module FriendFeed
 
