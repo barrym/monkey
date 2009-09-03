@@ -7,6 +7,10 @@
     = f.select :display_mode, [["Normal","normal"],["Classic","classic"]]
 
   %p
+    Items per page
+    = f.text_field :items_per_page
+
+  %p
     Google Reader URL
     = f.text_field :google_reader_url
 
