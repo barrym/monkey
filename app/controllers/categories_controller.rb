@@ -7,6 +7,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    per_page = signed_in? ? current_user.user_setting.items_per_page : ITEMS_PER_PAGE
+    @entities = @category.entities(:page => (params[:page] || 1), :per_page => per_page)
   end
 
   private

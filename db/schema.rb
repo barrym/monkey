@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090827202915) do
+ActiveRecord::Schema.define(:version => 20090903061244) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20090827202915) do
     t.text     "google_reader_url"
     t.string   "friendfeed_username"
     t.string   "friendfeed_remote_key"
+    t.integer  "items_per_page",        :default => 20
   end
 
   create_table "users", :force => true do |t|

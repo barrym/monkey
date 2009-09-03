@@ -17,8 +17,15 @@ class Category < ActiveRecord::Base
 
   SHARED_LINK_CATEGORY = self.find_by_name('Shared Links')
 
-  def entities
-    self.categorised_entities.find(:all, :include => :entity, :order => "updated_at desc", :group => "entity_type, entity_id").map {|ce| ce.entity}
+  def entities(options = {})
+    raise "Wah! Need :page and :per_page" unless options[:page] && options[:per_page]
+    # self.categorised_entities.find(:all, :include => :entity, :order => "updated_at desc", :group => "entity_type, entity_id").map {|ce| ce.entity}
+    self.categorised_entities.paginate(:page => options[:page],
+                                       :per_page => options[:per_page],
+                                       :include => :entity,
+                                       :order => "updated_at desc",
+                                       :group => "entity_type, entity_id"
+                                      )
   end
 
 end

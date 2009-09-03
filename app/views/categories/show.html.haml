@@ -4,6 +4,8 @@
 
 =render "posts/form" if signed_in?
 
+= will_paginate @entities
+
 #entities
-  - @category.entities.each do |entity|
-    = render entity
+  - @entities.each do |entity|
+    = render entity.entity
