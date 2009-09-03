@@ -33,6 +33,8 @@ module FriendFeed
   class Entry
     include SharedLinkHelpers
 
+    attr_reader :data
+
     def initialize(data)
       @data = data
     end
