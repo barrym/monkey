@@ -1,7 +1,8 @@
-%div{:class => "span-#{@entity_columns}"}
+- hide ||= nil
+%div{:class => "span-#{@entity_columns}", :id => dom_id(comment), :style => hide ? "display:none" : ''}
   %div.span-1
     &nbsp;
-  %div{:class => "span-#{@entity_columns-1} comment last", :id => dom_id(comment)}
+  %div{:class => "span-#{@entity_columns-1} comment last"}
     %div.span-1
       %a{:href => user_path(comment.user), :title => comment.user.display_name}
         %img{:src => gravatar_url(comment.user.email, :size => 30)}

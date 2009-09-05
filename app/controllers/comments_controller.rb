@@ -5,13 +5,11 @@ class CommentsController < ApplicationController
 
   def display
     @comment = Comment.find(params[:id])
-  # //   Element.insert(entity_dom_id + '_comments', {bottom: content});
-  # //   // Effect.SlideDown(comment_dom_id, {duration: 0.5});
-  # //   $(comment_dom_id).highlight();
     if request.xhr?
+      comment_partial = render_to_string :partial => 'comments/comment', :locals => {:comment => @comment, :hide => true}
       render :update do |page|
-        page.insert_html(:bottom, "#{dom_id(@comment.entity)}_comments", :partial => 'comments/comment', :locals => {:comment => @comment, :hide => true})
-        page << "Effect.SlideDown('#{dom_id(@comment)}', {'duration':0.5})"
+        page << "$j('##{dom_id(@comment.entity)}_comments').append('#{escape_javascript(comment_partial)}')"
+        page << "$j('##{dom_id(@comment)}').slideDown(700)";
       end
     else
 
@@ -21,11 +19,8 @@ class CommentsController < ApplicationController
   def create
     @comment = @entity.comments.create(:user => current_user, :body => params[:comment][:body])
     if request.xhr?
-      # html_output = render_to_string :partial => 'comments/comment', :locals => {:comment => @comment}
       render :juggernaut => {:type => :send_to_channels, :channels => @comment.entity.juggernaut_channels} do |page|
-        # page << "displayNewComment('#{dom_id(@entity)}', '#{dom_id(@comment)}', '#{escape_javascript(html_output)}');"
         page << "displayNewComment('#{dom_id(@entity)}', '#{@comment.id}');"
-        # page.replace_html("#{dom_id(@comment.entity)}_comments", :partial => 'comments/comments', :locals => {:entity => @comment.entity})
       end
     else
       # TODO not ajax

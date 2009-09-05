@@ -81,33 +81,22 @@ function displayNewPost(post_id) {
   });
 }
 
-function displayNewPostP(post_id) {
-  new Ajax.Request('/posts/' + post_id + '/display',
-      {
-        method: 'get',
-        onCreate: function() { $('spinner').show(); },
-        onComplete: function() { $('spinner').hide(); },
-      }
-  );
+function displayNewComment(entity_dom_id, comment_id) {
+  // TODO : fix this shit
+  // if comments are here, add a new one
+  if($j(entity_dom_id + '_comments')) {
+    $j('#spinner').show();
+    $j.getScript('/comments/' + comment_id + '/display', function() {
+      $j('#spinner').hide();
+    });
+  } else {
+    // TODO : if the entity is here (ie classic mode)
+    // then call posts/X/update_display
+    // which rerenders that partial with an updated comment/like count
+  }
 }
-//
-// function displayNewComment(entity_dom_id, comment_id) {
-//   // TODO : fix this shit
-//   // if comments are here, add a new one
-//   if($(entity_dom_id + '_comments')) {
-//     new Ajax.Request('/comments/' + comment_id + '/display',
-//         {
-//           method: 'get',
-//           onCreate: function() { $('spinner').show(); },
-//           onComplete: function() { $('spinner').hide(); },
-//         }
-//     );
-//   } else {
-//     // TODO : if the entity is here (ie classic mode)
-//     // then call posts/X/update_display
-//     // which rerenders that partial with an updated comment/like count
-//   }
-// }
+
+
 
 
 
