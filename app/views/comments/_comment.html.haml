@@ -2,7 +2,7 @@
 %div{:class => "span-#{@entity_columns}", :id => dom_id(comment), :style => hide ? "display:none" : ''}
   %div.span-1
     &nbsp;
-  %div{:class => "span-#{@entity_columns-1} comment last"}
+  %div{:class => "span-#{@entity_columns-1} comment last", :id => "#{dom_id(comment)}_inner"}
     %div.span-1
       %a{:href => user_path(comment.user), :title => comment.user.display_name}
         %img{:src => gravatar_url(comment.user.email, :size => 30)}
@@ -16,11 +16,11 @@
             - page << "showCommentForm('#{dom_id(comment.entity)}','[quote=#{comment.user.display_name}]#{escape_javascript(comment.body)}[/quote]');"
 
 :javascript
-  Event.observe('#{dom_id(comment)}','mouseover', function() {
-    $('#{dom_id(comment)}_actions').show();
-    $('#{dom_id(comment)}').toggleClassName('comment_highlight');
+  $j('##{dom_id(comment)}').mouseover(function() {
+    $j('##{dom_id(comment)}_actions').show();
+    $j('##{dom_id(comment)}_inner').toggleClass('comment_highlight');
   });
-  Event.observe('#{dom_id(comment)}','mouseout', function() {
-    $('#{dom_id(comment)}_actions').hide();
-    $('#{dom_id(comment)}').toggleClassName('comment_highlight');
+  $j('##{dom_id(comment)}').mouseout(function() {
+    $j('##{dom_id(comment)}_actions').hide();
+    $j('##{dom_id(comment)}_inner').toggleClass('comment_highlight');
   });
