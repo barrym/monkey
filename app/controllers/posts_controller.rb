@@ -20,7 +20,8 @@ class PostsController < ApplicationController
 
   def create
     # TODO: some validation should happen here
-    @post = Post.create!(params[:post].merge(:user => current_user, :category_ids => params[:category_ids].split(',')))
+    category_ids = Category.find(:all, :conditions => {:name => params[:categories].strip.split(',').map(&:strip)}).map(&:id)
+    @post = Post.create!(params[:post].merge(:user => current_user, :category_ids => category_ids))
     if request.xhr?
       render :juggernaut => {:type => :send_to_channels, :channels => @post.juggernaut_channels} do |page|
         page << "displayNewPost('#{@post.id}');"

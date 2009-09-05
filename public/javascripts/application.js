@@ -5,38 +5,8 @@ $j(document).ready(function() {
   $j('#post_subject').focus( function() {
     showNewPostForm();
     });
-
-  setUpNewPostCategories();
+  $j('#new_post_form').ajaxForm(clearNewPostForm);
 });
-
-// function setUpNewPostCategories() {
-//   var categoryList = new Hash();
-//
-//   $F('category_ids').split(', ').each(function(e) {
-//     if(e != '')
-//     {
-//       categoryList.set(e, 1);
-//     }
-//   })
-//
-//   $$('.to_category').each(function(e) {
-//     Event.observe(e, 'click', function() {
-//
-//       this.toggleClassName('selected');
-//
-//       if(categoryList.get(this.readAttribute('category_id')) != undefined)
-//       {
-//         categoryList.unset(this.readAttribute('category_id'));
-//       }
-//       else
-//       {
-//         categoryList.set(this.readAttribute('category_id'), 1);
-//       }
-//       $('category_ids').value = categoryList.keys().sort().join(",");
-//     })
-//   })
-//
-// }
 
 function showNewPostForm() {
   if($j('#new_post_body').is(':hidden')) {

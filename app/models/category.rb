@@ -17,6 +17,8 @@ class Category < ActiveRecord::Base
 
   SHARED_LINK_CATEGORY = self.find_by_name('Shared Links')
 
+  named_scope :non_system, :conditions => { :system => false }, :order => :name
+
   def entities(options = {})
     raise "Wah! Need :page and :per_page" unless options[:page] && options[:per_page]
     # self.categorised_entities.find(:all, :include => :entity, :order => "updated_at desc", :group => "entity_type, entity_id").map {|ce| ce.entity}
