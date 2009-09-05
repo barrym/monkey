@@ -8,9 +8,10 @@ class PostsController < ApplicationController
     # TODO : check if post is found
     @post = Post.find(params[:id])
     if request.xhr?
+      post_partial = render_to_string :partial => 'posts/post', :locals => {:post => @post, :hide_post => true}
       render :update do |page|
-        page.insert_html(:top, 'entities', :partial => 'posts/post', :locals => {:post => @post, :hide_post => true})
-        page << "Effect.SlideDown('#{dom_id(@post)}', {'duration':0.5})"
+        page << "$j('#entities').prepend('#{escape_javascript(post_partial)}');"
+        page << "$j('##{dom_id(@post)}_container').slideDown(1000);"
       end
     else
 

@@ -15,8 +15,8 @@ module ApplicationHelper
   end
 
   def post_preview(text)
-    logger.info(text)
-    logger.info("size : #{text.size}")
+    # logger.info(text)
+    # logger.info("size : #{text.size}")
     # if text.size > 300
       # truncate(text, :length => 200, :omission => "...")
     # else
