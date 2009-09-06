@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
       render :juggernaut => {:type => :send_to_channels, :channels => @comment.entity.juggernaut_channels} do |page|
         page << "displayNewComment('#{dom_id(@entity)}', '#{@comment.id}');"
       end
+      render :text => 'juggernaut seems to do some weird shit'
     else
       # TODO not ajax
     end

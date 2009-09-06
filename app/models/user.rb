@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   private
 
   def add_user_setting
-    self.user_setting = UserSetting.new(:display_mode => 'normal')
+    self.user_setting = UserSetting.new(:display_mode => 'classic')
   end
 
 end
