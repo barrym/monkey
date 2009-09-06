@@ -25,17 +25,24 @@ class PostsController < ApplicationController
 
     if request.xhr?
       if @post.valid?
-        @post.save!
+        if params[:commit] == "Preview"
+          preview_div = render_to_string :partial => 'posts/preview', :locals => {:post => @post}
+          render :update do |page|
+            page << "$j('#{escape_javascript(preview_div)}').dialog({modal:true, width:850, height:500, buttons: { Back: function() { $j(this).dialog('close'); }, Post:function() { $j(this).dialog('close');$j('#new_post_form').submit();} }})"
+          end
+        else
+          @post.save!
 
-        render :juggernaut => {:type => :send_to_clients, :client_ids => [current_user.id]} do |page|
-          page << "clearNewPostForm();"
+          render :juggernaut => {:type => :send_to_clients, :client_ids => [current_user.id]} do |page|
+            page << "clearNewPostForm();"
+          end
+
+          render :juggernaut => {:type => :send_to_channels, :channels => @post.juggernaut_channels} do |page|
+            page << "displayNewPost('#{@post.id}');"
+          end
+
+          render false
         end
-
-        render :juggernaut => {:type => :send_to_channels, :channels => @post.juggernaut_channels} do |page|
-          page << "displayNewPost('#{@post.id}');"
-        end
-
-        render false
       else
         error_div = render_to_string :partial => 'shared/error_dialog', :locals => {:errors => @post.errors}
         render :update do |page|

@@ -13,6 +13,7 @@
 
   #new_post_submit{:style => 'display:none'}
     =submit_tag "Post"
+    =submit_tag "Preview"
     = link_to_function "Cancel", "clearNewPostForm()"
 :javascript
   var categories = '#{Category.non_system.map(&:name).join('|')}'.split('|');
