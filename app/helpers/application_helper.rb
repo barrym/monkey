@@ -32,6 +32,7 @@ module ApplicationHelper
   def juggernaut_connection
     options = {}
     options[:channels] = ["category_#{@category.id}"] if @category
+    options[:channels] = ["post_#{@post.id}"] if @post
     options[:client_id] = current_user.id if signed_in?
     juggernaut(options)
   end

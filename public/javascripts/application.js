@@ -6,6 +6,7 @@ $j(document).ready(function() {
     showNewPostForm();
     });
   $j('#new_post_form').ajaxForm({dataType:'script'});
+  $j('.comment_form').ajaxForm({dataType:'script'});
 });
 
 function showNewPostForm() {

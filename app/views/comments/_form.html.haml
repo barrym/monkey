@@ -1,5 +1,5 @@
 -if signed_in?
-  -remote_form_for(:comment, :url => add_comment_path(:entity_type => entity.class, :entity_id => entity.id), :complete => "hideCommentForm('#{dom_id(entity)}')") do |f|
+  -form_for(:comment, :url => add_comment_path(:entity_type => entity.class, :entity_id => entity.id), :html => {:class => 'comment_form'}) do |f|
     %div
       =text_area_tag "comment[body]", nil, :id => "#{dom_id(entity)}_comment_body",:cols => 90, :rows => 15
 

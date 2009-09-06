@@ -17,12 +17,24 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @entity.comments.create(:user => current_user, :body => params[:comment][:body])
+    @comment = @entity.comments.new(:user => current_user, :body => params[:comment][:body])
     if request.xhr?
-      render :juggernaut => {:type => :send_to_channels, :channels => @comment.entity.juggernaut_channels} do |page|
-        page << "displayNewComment('#{dom_id(@entity)}', '#{@comment.id}');"
+      if @comment.valid?
+        @comment.save!
+        render :juggernaut => {:type => :send_to_clients, :client_ids => [current_user.id]} do |page|
+          page << "hideCommentForm('#{dom_id(@entity)}');"
+        end
+
+        render :juggernaut => {:type => :send_to_channels, :channels => @comment.entity.juggernaut_channels} do |page|
+          page << "displayNewComment('#{dom_id(@entity)}', '#{@comment.id}');"
+        end
+        render false, :status => 200
+      else
+        error_div = render_to_string :partial => 'shared/error_dialog', :locals => {:errors => @comment.errors}
+        render :update do |page|
+          page << "$j('#{escape_javascript(error_div)}').dialog({modal:true, buttons: { Ok: function() { $j(this).dialog('close'); } }})"
+        end
       end
-      render :text => 'juggernaut seems to do some weird shit'
     else
       # TODO not ajax
     end

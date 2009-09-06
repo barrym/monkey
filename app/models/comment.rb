@@ -18,6 +18,8 @@ class Comment < ActiveRecord::Base
 
   after_save :update_user_entities, :touch_parent
 
+  validates_presence_of :body
+
   private
 
   def update_user_entities
