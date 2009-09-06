@@ -37,4 +37,12 @@ module ApplicationHelper
     juggernaut(options)
   end
 
+  def display_mode
+    if signed_in?
+      current_user.user_setting.display_mode
+    else
+      "normal"
+    end
+  end
+
 end
