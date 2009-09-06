@@ -29,4 +29,11 @@ module ApplicationHelper
     time.strftime("%a %b %d %l:%M#{meridian}")
   end
 
+  def juggernaut_connection
+    options = {}
+    options[:channels] = ["category_#{@category.id}"] if @category
+    options[:client_id] = current_user.id if signed_in?
+    juggernaut(options)
+  end
+
 end

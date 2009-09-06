@@ -5,7 +5,7 @@ $j(document).ready(function() {
   $j('#post_subject').focus( function() {
     showNewPostForm();
     });
-  $j('#new_post_form').ajaxForm(clearNewPostForm);
+  $j('#new_post_form').ajaxForm({dataType:'script'});
 });
 
 function showNewPostForm() {

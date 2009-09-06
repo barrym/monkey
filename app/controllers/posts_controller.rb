@@ -21,17 +21,32 @@ class PostsController < ApplicationController
   def create
     # TODO: some validation should happen here
     category_ids = Category.find(:all, :conditions => {:name => params[:categories].strip.split(',').map(&:strip)}).map(&:id)
-    @post = Post.create!(params[:post].merge(:user => current_user, :category_ids => category_ids))
-    if request.xhr?
-      render :juggernaut => {:type => :send_to_channels, :channels => @post.juggernaut_channels} do |page|
-        page << "displayNewPost('#{@post.id}');"
-      end
-      render false
-    else
+    @post = Post.new(params[:post].merge(:user => current_user, :category_ids => category_ids))
 
+    if request.xhr?
+      if @post.valid?
+        @post.save!
+
+        render :juggernaut => {:type => :send_to_clients, :client_ids => [current_user.id]} do |page|
+          page << "clearNewPostForm();"
+        end
+
+        render :juggernaut => {:type => :send_to_channels, :channels => @post.juggernaut_channels} do |page|
+          page << "displayNewPost('#{@post.id}');"
+        end
+
+        render false
+      else
+        error_div = render_to_string :partial => 'shared/error_dialog', :locals => {:errors => @post.errors}
+        render :update do |page|
+          page << "$j('#{escape_javascript(error_div)}').dialog({modal:true, buttons: { Ok: function() { $j(this).dialog('close'); } }})"
+        end
+      end
+    else
+      # not ajax
     end
-  rescue => e
-    render :text => "DO SOMETHING TO FIX THIS"
+  # rescue => e
+  #   render :text => "DO SOMETHING TO FIX THIS"
   end
 
 end

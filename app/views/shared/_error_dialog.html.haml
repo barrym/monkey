@@ -1,0 +1,4 @@
+%div{:title => "Oops, some errors occurred"}
+  %ul
+    -errors.each do |error|
+      %li= error.join(' ').capitalize

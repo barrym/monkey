@@ -29,6 +29,7 @@
       %a{:href => users_path}Users
       = image_tag('spinner.gif', :id => 'spinner', :style => 'display:none;')
     #main{:class => "column span-#{@main_columns}"}
+      = juggernaut_connection
       = yield
     #sidebar{:class => "column span-#{@sidebar_columns} last"}
       = render :partial => "site/sidebar"

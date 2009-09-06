@@ -22,6 +22,8 @@ class Post < ActiveRecord::Base
 
   after_save :update_user_entities
 
+  validates_presence_of :subject, :body
+
   private
 
   def update_user_entities
