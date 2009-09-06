@@ -19,7 +19,9 @@ module EntityAbstract
   end
 
   def juggernaut_channels
-    self.category_ids.map{|id| "category_#{id}"}
+    category_ids = self.category_ids.map{|id| "category_#{id}"}
+    entity_id = "#{self.class.to_s.underscore}_#{self.id}"
+    category_ids + [entity_id]
   end
 
   private

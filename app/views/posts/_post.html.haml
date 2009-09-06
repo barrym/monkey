@@ -1,7 +1,7 @@
 - hide_post ||= nil
 -if signed_in? && current_user.user_setting.display_mode == "classic"
-  %div{:class => "post_container span-#{@main_columns - 2} prepend-1 append-1"}
-    %div{:class => "post span-#{@entity_columns}", :style => hide_post ? 'display:none;':'', :id => dom_id(post)}
+  %div{:class => "post_container span-#{@main_columns - 2} prepend-1 append-1", :id => "#{dom_id(post)}_container", :style => hide_post ? 'display:none;':''}
+    %div{:class => "post span-#{@entity_columns}"}
       %div.span-1
         %a{:href => user_path(post.user), :title => post.user.display_name}
           %img{:src => gravatar_url(post.user.email, :size => 35)}
