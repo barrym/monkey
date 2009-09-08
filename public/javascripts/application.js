@@ -53,6 +53,13 @@ function displayNewPost(post_id) {
   });
 }
 
+function displayNewSharedLink(shared_link_id) {
+  $j('#spinner').show();
+  jQuery.getScript('/shared_links/' + shared_link_id + '/display', function(data) {
+    $j('#spinner').hide();
+  });
+}
+
 function displayNewComment(entity_dom_id, comment_id) {
   // TODO : fix this shit
   // if comments are here, add a new one
