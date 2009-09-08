@@ -23,6 +23,7 @@ class SharedLink < ActiveRecord::Base
   # belongs_to :categorised_entity
 
   after_save :update_user_entities
+  after_create :send_to_juggernaut
 
   def self.share(data)
     raise "No URL in shared link" unless data[:url]
@@ -37,6 +38,10 @@ class SharedLink < ActiveRecord::Base
 
   def update_user_entities
     self.user.entities << self
+  end
+
+  def send_to_juggernaut
+    Juggernaut.send_to_channels("displayNewSharedLink('#{self.id}');", self.juggernaut_channels)
   end
 
 end
