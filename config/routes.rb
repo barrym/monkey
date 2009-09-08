@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :posts, :member => {:display => :get}
+  map.resources :shared_links, :member => {:display => :get}
 
   map.settings '/settings/', :controller => "user_settings", :action => "edit"
   map.save_settings '/settings/save', :controller => "user_settings", :action => "update"
